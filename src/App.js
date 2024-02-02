@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import { LoginPage } from './components/auth/login';
+import { Freelancer } from './components/user/freelancer';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
@@ -8,7 +9,12 @@ function App() {
     {
       path: "/",
       element: <LoginPage/>
-    }
+    },
+    {
+      path: "/freelancer",
+      element: <Freelancer/>
+    },
+
   ]);
 
   return (
