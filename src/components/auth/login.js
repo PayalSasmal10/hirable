@@ -6,7 +6,6 @@ export const LoginPage = () => {
         email: "",
         password: ""
     });
-    const [loginError, setLoginError] = useState('');
 
     const onChangeInputHandler = (e) => {
         setFetchInput({
@@ -27,7 +26,7 @@ export const LoginPage = () => {
         setFetchInput({
             email: '',
             password: ''
-        })
+        });
     }
 
     return(
