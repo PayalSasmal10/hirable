@@ -1,11 +1,13 @@
-import React from "react";
-import jobdetails from "../../data/JobDetailsMockData.json";
+import React, { useContext } from "react";
 import { LuDot } from "react-icons/lu";
 import { PiDotOutlineFill } from "react-icons/pi";
 import "./index.css";
+import { JobDetailsContext } from "../../store/jobDetailsContext";
 
 export default function JobDetails() {
-  return jobdetails.map((jobdetail) => {
+  const { jobDetails } = useContext(JobDetailsContext);
+  console.log("JobDetails.role", jobDetails.role);
+  return jobDetails.map((jobdetail) => {
     return (
       <div className="card" key={jobdetail.guid}>
         <div className="content">
