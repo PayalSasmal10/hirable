@@ -1,0 +1,41 @@
+[
+	{	"id": 1,
+		"name": "Payal Sasmal",
+		"phone": "(692) 722-5634",
+		"email": "sasmalpayal@gmail.com",
+		"password": "payal@10",
+		"role": "freelancer"
+	},
+	{	
+		"id": 2,
+		"name": "Noelani Ford",
+		"phone": "(363) 779-8357",
+		"email": "tempor.diam.dictum@hotmail.com",
+		"password": "payal@10",
+		"role": "freelancer"
+	},
+	{
+		"id": 3,
+		"name": "Maxine Cline",
+		"phone": "(475) 160-5532",
+		"email": "ut.nec@icloud.org",
+		"password": "payal@10",
+		"role": "employer"
+	},
+	{
+		"id": 4,
+		"name": "Kiona Hobbs",
+		"phone": "1-174-883-8618",
+		"email": "odio.a@hotmail.org",
+		"password": "payal@10",
+		"role": "employer"
+	},
+	{	
+		"id": 5,
+		"name": "Meghan Mcclain",
+		"phone": "(671) 813-7090",
+		"email": "eu.dolor@icloud.ca",
+		"password": "payal@10",
+		"role": "employer"
+	}
+]
