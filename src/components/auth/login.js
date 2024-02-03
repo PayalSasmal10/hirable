@@ -1,5 +1,5 @@
 import { useState } from "react";
-import loginData from "../mock data/loginMock.json";
+import loginData from "../../data/loginMock.json";
 
 export const LoginPage = () => {
     const [fetchInput, setFetchInput] = useState({

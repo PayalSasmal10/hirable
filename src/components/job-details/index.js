@@ -1,5 +1,7 @@
 import React from "react";
 import jobdetails from "../../data/JobDetailsMockData.json";
+import { LuDot } from "react-icons/lu";
+import { PiDotOutlineFill } from "react-icons/pi";
 import "./index.css";
 
 export default function JobDetails() {
@@ -13,7 +15,9 @@ export default function JobDetails() {
           </div>
           <div>
             <span>{jobdetail.experience}</span>
+            <PiDotOutlineFill />
             <span>{jobdetail.salary}</span>
+            <PiDotOutlineFill />
             <span>{jobdetail.region}</span>
           </div>
           <div>
@@ -22,7 +26,11 @@ export default function JobDetails() {
           <div>
             <span>
               {jobdetail.skills.map((skill) => (
-                <span key={skill}>{skill}</span>
+                <span key={skill}>
+                  {skill}
+
+                  <LuDot />
+                </span>
               ))}
             </span>
           </div>
