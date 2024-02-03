@@ -28,7 +28,6 @@ export default function JobDetails() {
               {jobdetail.skills.map((skill) => (
                 <span key={skill}>
                   {skill}
-
                   <LuDot />
                 </span>
               ))}
