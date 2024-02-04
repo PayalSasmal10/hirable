@@ -1,19 +1,25 @@
+.job-details{
+    display: flex;
+    /* justify-content: space-around; */
+    margin-top: 5rem;
+    position: relative;
+    z-index: 10;
+}
 .card-layout{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 5rem;
-    position: relative;
-    z-index: 10;
+    width: 60%;
 }
 .card{
     display: flex;
     justify-content: space-between;
-    width: 60%;
-    box-shadow: 0 4px 8px 0 rgba(0.2, 0, 0, 0.2);
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     transition: 0.3s;
     border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 .content{
     padding: 10px 16px;
@@ -34,5 +40,14 @@
     cursor: pointer;
 }
 
+/* Job Filter CSS*/
+.filter-container{
+    width: 15%;
+    height: fit-content;
+    margin: 2rem 2rem 0 4rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 1rem 0 2rem 1rem;
+    border-radius: 1rem;
+}
 
 

@@ -2,12 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    /* padding: 1rem; */
     box-shadow: 0 4px 8px 0 rgba(116, 110, 110, 0.2);
     width: 100%;
     position: fixed;
     top: 0;
-    margin-bottom: 1rem;
     z-index: 999;
     background-color: #fff;
 }
@@ -21,7 +20,7 @@
 .header input[type=text]{
     float: right;
     padding: 5px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 } 
 .header button {
     border: none;

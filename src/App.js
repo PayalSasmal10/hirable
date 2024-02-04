@@ -3,6 +3,7 @@ import { Freelancer } from "./components/user-profile/freelancer";
 import { Employer } from "./components/user-profile/employer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { JobDetailsProvider } from "./store/jobDetailsContext";
+import { FreelancerProfile } from "./components/profile/freelancerProfile";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,6 +14,10 @@ function App() {
     {
       path: "/freelancer",
       element: <Freelancer />,
+    },
+    {
+      path: "/freelancerprofile",
+      element: <FreelancerProfile />,
     },
     {
       path: "/employer",

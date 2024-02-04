@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import "./index.css";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
+import {FreelancerProfile} from "../profile/freelancerProfile";
 
 export default function Header() {
   const { jobDetails, filteredData, setFilteredData, updatedSearchData } =
@@ -49,6 +50,7 @@ export default function Header() {
           <BsSearch />
         </button>
       </div>
+      <FreelancerProfile/>
     </div>
   );
 }
