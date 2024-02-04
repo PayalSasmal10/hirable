@@ -5,14 +5,13 @@ import "./index.css";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
 
 export default function Header() {
-  const { jobDetails, filteredData, setFilteredData } =
+  const { jobDetails, filteredData, setFilteredData, updatedSearchData } =
     useContext(JobDetailsContext);
   const [searchFieldData, setSearchFieldData] = useState("");
 
   const onSearchHandler = (e) => {
     setSearchFieldData(e.target.value);
   };
-
 
   const onFilteredDataChangeHandler = (valueToBeSearched) => {
     if (valueToBeSearched !== "") {
@@ -23,8 +22,10 @@ export default function Header() {
           .includes(valueToBeSearched.toLowerCase());
       });
       setFilteredData(data);
+      updatedSearchData(valueToBeSearched);
     } else if (valueToBeSearched.trim() === "") {
       setFilteredData(jobDetails);
+      updatedSearchData("");
     }
   };
 
