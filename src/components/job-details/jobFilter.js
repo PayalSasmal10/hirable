@@ -3,15 +3,13 @@ import { LiaDollarSignSolid } from "react-icons/lia";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
 
 export function JobFilter() {
-  const {
-    jobDetails,
-    filteredData,
-    setFilteredData,
-    selectedSalaries,
-    updatedSelectedSalaries,
-    searchData
-  } = useContext(JobDetailsContext);
-//   const [selectedSalaries, setSelectedSalaries] = useState([]);
+  const { jobDetails, filteredData, setFilteredData, searchData } =
+    useContext(JobDetailsContext);
+  const [selectedSalaries, setSelectedSalaries] = useState([]);
+  const [filterStoredData, setfilterStoredData] = useState(filteredData);
+
+  //   const [salaryFilteredData, setSalaryFilteredData] = useState([]);
+
   const salaryRange = [
     "0k-5k",
     "5k-10k",
@@ -27,52 +25,58 @@ export function JobFilter() {
     const value = e.target.value;
     console.log("value", value);
     if (selectedSalaries.includes(value)) {
-      updatedSelectedSalaries(
+      setSelectedSalaries(
         selectedSalaries.filter((salary) => salary !== value)
       );
       console.log("inside selected salaries if", selectedSalaries);
     } else {
-      updatedSelectedSalaries([...selectedSalaries, value]);
+      setSelectedSalaries([...selectedSalaries, value]);
       console.log("inside selected salaries else", selectedSalaries);
     }
   };
 
-  const applySalaryFilters = () => {
-    if (selectedSalaries.length === 0) {
-      setFilteredData(jobDetails);
-    } else {
-      const data = jobDetails.filter((filterSalary) =>
-        selectedSalaries.some((selectSalary) =>
-          filterSalary.salary.includes(selectSalary)
-        )
-      );
-      setFilteredData(data);
-    }
-  };
+  //   const onChangeFilterButtonApplyHandler = () => {
+  //     console.log("filteredData", filteredData);
+  //     let dataToFilter = salaryFilteredData.length > 0 ? salaryFilteredData : jobDetails;
+  //     if (selectedSalaries.length === 0) {
+  //       setFilteredData(dataToFilter);
+  //       console.log("selectedSalaries.length", selectedSalaries.length);
+  //       return;
+  //     }
+  //     console.log("button click", selectedSalaries);
 
-  useEffect(() => {
-    applySalaryFilters();
-  }, [selectedSalaries]);
+  //     const data = dataToFilter.filter((filterSalary) =>
+  //       selectedSalaries.some((selectsalary) =>
+  //         filterSalary.salary.includes(selectsalary)
+  //       )
+  //     );
+  //     console.log("data", data);
+  //     setFilteredData(data);
+  //     console.log("salary Range", salaryRange);
+  //   };
 
+  console.log("filteredData", filteredData);
   const onChangeFilterButtonApplyHandler = () => {
-    console.log("filteredData", filteredData);
     let dataToFilter =
-      selectedSalaries.length > 0 ? filteredData : jobDetails;
+      filterStoredData.length > 0 ? filterStoredData : filteredData;
     if (selectedSalaries.length === 0) {
-      setFilteredData(dataToFilter);
+      console.log("dataToFilter", filterStoredData);
+      setFilteredData(filterStoredData);
       console.log("selectedSalaries.length", selectedSalaries.length);
       return;
-    }
-    console.log("button click", selectedSalaries);
+    }else if(selectedSalaries.length >0){
 
-    const data = dataToFilter.filter((filterSalary) =>
-      selectedSalaries.some((selectsalary) =>
-        filterSalary.salary.includes(selectsalary)
-      )
-    );
-    console.log("data", data);
-    setFilteredData(data);
-    console.log("salary Range", salaryRange);
+        const data =
+          searchData &&
+          dataToFilter.filter((filterSalary) =>
+            selectedSalaries.some((selectsalary) =>
+              filterSalary.salary.includes(selectsalary)
+            )
+          );
+        console.log("search Term", data);
+        console.log("search", searchData);
+        setFilteredData(data);
+    }
   };
 
   return (
