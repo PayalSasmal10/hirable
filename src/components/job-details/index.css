@@ -1,15 +1,38 @@
-.card{
+.card-layout{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 80px 200px;
+    margin-top: 5rem;
+    position: relative;
+    z-index: 10;
+}
+.card{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
     box-shadow: 0 4px 8px 0 rgba(0.2, 0, 0, 0.2);
     transition: 0.3s;
-    border-radius: 5px;
+    border-radius: 1rem;
 }
 .content{
-    padding: 2px 16px;
-    width: 60vw;
-    height: 30vh;
+    padding: 10px 16px;
 }
+
+.easy-apply-btn{
+    border-radius: 6px;
+    border: none;
+    margin : 2rem;
+}
+
+.easy-apply-btn button{
+    padding: 0.5rem 1rem;
+    border-radius: 7%;
+    border: none;
+    color: #fff;
+    background-color: #15d6fc;
+    cursor: pointer;
+}
+
+
 
