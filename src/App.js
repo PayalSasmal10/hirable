@@ -3,7 +3,7 @@ import { Freelancer } from "./components/user-profile/freelancer";
 import { Employer } from "./components/user-profile/employer";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { JobDetailsProvider } from "./store/jobDetailsContext";
-import Freelancerpage from "./components/pages/freelancerpage";
+import Freelancerpage from "./pages/freelancerpage";
 
 function App() {
   const router = createBrowserRouter([

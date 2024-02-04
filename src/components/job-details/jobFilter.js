@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LiaDollarSignSolid } from "react-icons/lia";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
+import { Button } from "antd";
 
 export function JobFilter() {
   const { jobDetails, filteredData, setFilteredData, searchData } =
@@ -119,9 +120,9 @@ export function JobFilter() {
         ))}
       </div>
       <div className="easy-apply-btn">
-        <button type="button" onClick={onChangeFilterButtonApplyHandler}>
+        <Button type="primary" onClick={onChangeFilterButtonApplyHandler}>
           Apply
-        </button>
+        </Button>
       </div>
     </div>
   );

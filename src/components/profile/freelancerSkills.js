@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FreelancerProfile } from "./freelancerProfile";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Card, Input, Modal, Tag } from "antd";
 import "./freelancerProfile.css";
+import { CloseCircleOutlined, EditOutlined } from "@ant-design/icons";
+import { ProfileDetailsContext } from "../../store/profileDetailsContext";
 
 const skillLists = [
   "JavaScript",
@@ -49,10 +50,12 @@ const skillLists = [
   "NPM/Yarn",
 ];
 export function FreelancerSkills() {
+  const { userSkills, setUserSkills } = useContext(ProfileDetailsContext);
   const [takeInput, setTakeInput] = useState("");
-  const [selectSkills, setSelectSkills] = useState([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
   const [filteredSkills, setFilteredSkills] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onChangeHandler = (e) => {
     setTakeInput(e.target.value);
@@ -71,8 +74,8 @@ export function FreelancerSkills() {
   };
 
   const addSkills = (skill) => {
-    if (!selectSkills.includes(skill)) {
-      setSelectSkills([...selectSkills, skill]);
+    if (!selectedSkills.includes(skill)) {
+      setSelectedSkills([...selectedSkills, skill]);
       setTakeInput("");
     }
   };
@@ -94,37 +97,78 @@ export function FreelancerSkills() {
     showSelectedData();
   }, [takeInput]);
 
+  const onModalOkHandler = () => {
+    setUserSkills(selectedSkills);
+  };
+
+  const selectedSkillsSets = () => {
+    return (
+      <>
+        {selectedSkills.map((selectSkill) => (
+          <Tag
+            closeIcon={<CloseCircleOutlined />}
+            onClose={() => console.log(selectSkill)}
+            color="processing"
+            style={{ fontSize: "1rem", padding: "0.5rem" }}
+          >
+            {selectSkill}
+          </Tag>
+        ))}
+      </>
+    );
+  };
+
   return (
-    <div className="card-profile-layout">
-      <h3>Key Skills</h3>
-      <div className="card-profile">
-        <div className="content-profile">
-          {selectSkills.map((selectSkill) => (
-            <ul key={selectSkill}>
-              <li>{selectSkill}</li>
+    <div className="key-skills">
+      <Card style={{ width: "90%", display: "flex" }} className="card-profile">
+        <h3>Key Skills</h3>
+        <Button
+          icon={
+            <EditOutlined style={{ fontSize: "1.5rem", paddingLeft: "10px" }} />
+          }
+          style={{ border: "none" }}
+          onClick={() => setIsModalOpen(true)}
+        />
+        <div>{selectedSkillsSets()}</div>
+      </Card>
+
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={onModalOkHandler}
+        onCancel={() => setIsModalOpen(false)}
+      >
+        {/* {selectedSkills.map((selectSkill) => (
+          <Tag
+            closeIcon={<CloseCircleOutlined />}
+            onClose={() => console.log(selectSkill)}
+            color="processing"
+            style={{ fontSize: "1rem", padding: "0.5rem" }}
+          >
+            {selectSkill}
+          </Tag>
+        ))} */}
+        {selectedSkillsSets()}
+        <Input
+          placeholder="Add Skills"
+          type="text"
+          value={takeInput}
+          onChange={onChangeHandler}
+          onKeyDown={handleKeyPress}
+          style={{ marginTop: "0.5rem" }}
+        />
+        {filteredSkills.length > 0 &&
+          filteredSkills.map((skill, index) => (
+            <ul
+              key={skill}
+              onClick={() => addSkills(skill)}
+              className={selectedIndex === index ? "selected" : ""}
+              onMouseOver={() => setSelectedIndex(index)}
+            >
+              <li>{skill}</li>
             </ul>
           ))}
-        </div>
-        <div>
-          <input
-            type="text"
-            value={takeInput}
-            onChange={onChangeHandler}
-            onKeyDown={handleKeyPress}
-          />
-          {filteredSkills.length > 0 &&
-            filteredSkills.map((skill, index) => (
-              <ul
-                key={skill}
-                onClick={() => addSkills(skill)}
-                className={selectedIndex === index ? "selected" : ""}
-                onMouseOver={() => setSelectedIndex(index)}
-              >
-                <li>{skill}</li>
-              </ul>
-            ))}
-        </div>
-      </div>
+      </Modal>
     </div>
   );
 }

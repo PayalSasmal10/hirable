@@ -2,11 +2,12 @@ import React from "react";
 import Header from "../header";
 import { CgProfile } from "react-icons/cg";
 import "./freelancerProfile.css";
+import { Card } from "antd";
 
 export function FreelancerProfile() {
   return (
       <div className="card-profile-layout">
-        <div className="card-profile">
+        <Card className="card-profile">
           <div className="content-profile">
             <CgProfile size="4rem"/>
             <h4>Payal Sasmal</h4>
@@ -14,7 +15,7 @@ export function FreelancerProfile() {
             <p>8101689544</p>
             <p>sasmalpayal@gmail.com</p>
           </div>
-        </div>
+        </Card>
       </div>
   );
 }

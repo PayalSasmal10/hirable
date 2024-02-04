@@ -4,6 +4,7 @@ import { PiDotOutlineFill } from "react-icons/pi";
 import "./index.css";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
 import { JobFilter } from "../job-details/jobFilter";
+import { Button } from "antd";
 
 export default function JobDetails() {
   const { filteredData } = useContext(JobDetailsContext);
@@ -42,9 +43,7 @@ export default function JobDetails() {
                   </span>
                 </div>
               </div>
-              <div className="easy-apply-btn">
-                <button type="button">Easy Apply</button>
-              </div>
+              <Button type="primary">Easy Apply</Button>
             </div>
           );
         })}
