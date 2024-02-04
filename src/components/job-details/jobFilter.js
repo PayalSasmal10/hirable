@@ -118,9 +118,11 @@ export function JobFilter() {
           </div>
         ))}
       </div>
-      <button type="button" onClick={onChangeFilterButtonApplyHandler}>
-        Apply
-      </button>
+      <div className="easy-apply-btn">
+        <button type="button" onClick={onChangeFilterButtonApplyHandler}>
+          Apply
+        </button>
+      </div>
     </div>
   );
 }

@@ -32,8 +32,9 @@
 }
 
 .easy-apply-btn button{
+    display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 7%;
+    border-radius: 6%;
     border: none;
     color: #fff;
     background-color: #15d6fc;

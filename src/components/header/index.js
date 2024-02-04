@@ -47,7 +47,10 @@ export default function Header() {
           className="input"
         />
         <button type="submit" onClick={onClickHandler}>
-          <BsSearch style={{ position: "absolute", right: "10px" }} />
+          <BsSearch
+            size="1.5rem"
+            // style={{ position: "absolute", right: "500px" }}
+          />
         </button>
       </div>
       <HiOutlineUserCircle
