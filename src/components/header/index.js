@@ -13,6 +13,7 @@ export default function Header() {
     setSearchFieldData(e.target.value);
   };
 
+
   const onFilteredDataChangeHandler = (valueToBeSearched) => {
     if (valueToBeSearched !== "") {
       const data = jobDetails.filter((jobdetail) => {

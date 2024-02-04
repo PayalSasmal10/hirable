@@ -8,10 +8,6 @@ import {JobFilter} from "../job-details/jobFilter"
 export default function JobDetails() {
   const { filteredData } = useContext(JobDetailsContext);
 
-  useEffect(() => {
-    console.log("Filetered Data from ", filteredData);
-  }, [filteredData]);
-
   return (
     <div className="card-layout">
       <h1>Recommended jobs for you</h1>
