@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import "./index.css";
 import { JobDetailsContext } from "../../store/jobDetailsContext";
-import { FreelancerSkills } from "../profile/freelancerSkills";
+import { HiOutlineUserCircle } from "react-icons/hi";
 
 export default function Header() {
   const { jobDetails, filteredData, setFilteredData, updatedSearchData } =
@@ -47,10 +47,13 @@ export default function Header() {
           className="input"
         />
         <button type="submit" onClick={onClickHandler}>
-          <BsSearch />
+          <BsSearch style={{ position: "absolute", right: "10px" }} />
         </button>
       </div>
-      <FreelancerSkills />
+      <HiOutlineUserCircle
+        size="3em"
+        style={{ marginRight: "2rem", cursor: "pointer" }}
+      />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FreelancerProfile } from "./freelancerProfile";
 import "./freelancerProfile.css";
 
 const skillLists = [
@@ -94,6 +95,8 @@ export function FreelancerSkills() {
   }, [takeInput]);
 
   return (
+    <div>
+    <FreelancerProfile/>
     <div className="">
       <div>
         {selectSkills.map((selectSkill) => (
@@ -121,6 +124,7 @@ export function FreelancerSkills() {
             </ul>
           ))}
       </div>
+    </div>
     </div>
   );
 }

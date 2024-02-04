@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 1rem; */
+    padding: 1rem;
     box-shadow: 0 4px 8px 0 rgba(116, 110, 110, 0.2);
     width: 100%;
     position: fixed;
@@ -20,6 +20,8 @@
 .header input[type=text]{
     float: right;
     padding: 5px;
+    width: 600px;
+    height: 20px;
     /* margin-right: 10px; */
 } 
 .header button {
@@ -27,3 +29,7 @@
     background-color: transparent;
     cursor: pointer;
   }
+
+.profile{
+    cursor: pointer;
+}
