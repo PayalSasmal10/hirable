@@ -86,7 +86,7 @@ export function FreelancerSkills() {
         prvIndex < filteredSkills.length - 1 ? prvIndex + 1 : prvIndex
       );
     } else if (e.key === "ArrowUp") {
-      setSelectedIndex((prvIndex) => prvIndex > 0 ? prvIndex-1: prvIndex);
+      setSelectedIndex((prvIndex) => (prvIndex > 0 ? prvIndex - 1 : prvIndex));
     }
   };
 
@@ -95,36 +95,36 @@ export function FreelancerSkills() {
   }, [takeInput]);
 
   return (
-    <div>
-    <FreelancerProfile/>
-    <div className="">
-      <div>
-        {selectSkills.map((selectSkill) => (
-          <ul key={selectSkill}>
-            <li>{selectSkill}</li>
-          </ul>
-        ))}
-      </div>
-      <div>
-        <input
-          type="text"
-          value={takeInput}
-          onChange={onChangeHandler}
-          onKeyDown={handleKeyPress}
-        />
-        {filteredSkills.length > 0 &&
-          filteredSkills.map((skill, index) => (
-            <ul
-              key={skill}
-              onClick={() => addSkills(skill)}
-              className={selectedIndex === index ? "selected" : ""}
-              onMouseOver={() => setSelectedIndex(index)}
-            >
-              <li>{skill}</li>
+    <div className="card-profile-layout">
+      <h3>Key Skills</h3>
+      <div className="card-profile">
+        <div className="content-profile">
+          {selectSkills.map((selectSkill) => (
+            <ul key={selectSkill}>
+              <li>{selectSkill}</li>
             </ul>
           ))}
+        </div>
+        <div>
+          <input
+            type="text"
+            value={takeInput}
+            onChange={onChangeHandler}
+            onKeyDown={handleKeyPress}
+          />
+          {filteredSkills.length > 0 &&
+            filteredSkills.map((skill, index) => (
+              <ul
+                key={skill}
+                onClick={() => addSkills(skill)}
+                className={selectedIndex === index ? "selected" : ""}
+                onMouseOver={() => setSelectedIndex(index)}
+              >
+                <li>{skill}</li>
+              </ul>
+            ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }
