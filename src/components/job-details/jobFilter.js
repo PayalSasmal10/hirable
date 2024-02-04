@@ -6,8 +6,7 @@ export function JobFilter() {
     "0k-3k",
     "3k-5k",
     "5k-10k",
-    "10k-15k",
-    "15k-20k",
+    "10k-20k",
     "20k-30k",
     "30k-50k",
     "50k-70k",
@@ -15,7 +14,7 @@ export function JobFilter() {
     "100k +",
   ];
 
-  
+
 
   return (
     <div>
