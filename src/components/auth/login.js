@@ -1,47 +1,98 @@
-import { useState } from "react";
 import loginData from "../../data/loginMock.json";
+import { Button, Card, Flex, Form, Image, Input, Tabs } from "antd";
+import loginImage from "../../assets/loginImage.svg";
 
 export const LoginPage = () => {
-    const [fetchInput, setFetchInput] = useState({
-        email: "",
-        password: ""
-    });
+  const [form] = Form.useForm();
 
-    const onChangeInputHandler = (e) => {
-        setFetchInput({
-            ...fetchInput,
-            [e.target.name]: e.target.value
-        })
-    };
-    const onSubmitHandler = (e) =>{
-        e.preventDefault();
-        const user = loginData.find((user) => user.email === fetchInput.email && user.password === fetchInput.password)
-        if(user){
-            console.log("Successfully Login");
-        }else{
-            console.log("Failed to Login");
-            // setLoginError("Invalid email or password");
-
-        }
-        setFetchInput({
-            email: '',
-            password: ''
-        });
-    }
-
-    return(
-        <form onSubmit={onSubmitHandler}>
-            <div>
-                <div>
-                    <label>Email</label>
-                    <input type="text" value={fetchInput.email} onChange={onChangeInputHandler} name="email"/>
-                </div>
-                <div>
-                    <label>password</label>
-                    <input type="password" value={fetchInput.password} onChange={onChangeInputHandler} name="password"/>
-                </div>
-                <button type="submit">Login</button>
-            </div>
-        </form>
+  const onSubmitHandler = (values) => {
+    const user = loginData.find(
+      (user) => user.email === values.email && user.password === values.password
     );
-}
+    if (user) {
+      console.log("Successfully Login");
+    } else {
+      console.log("Failed to Login");
+    }
+    form.resetFields();
+  };
+
+  const loginForm = () => {
+    return (
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          maxWidth: 600,
+        }}
+        form={form}
+        onFinish={onSubmitHandler}
+      >
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
+          <Input name="email" />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password name="password" />
+        </Form.Item>
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    );
+  };
+
+  return (
+    <Flex justify="space-around" align="center">
+      <Image src={loginImage} preview={{ visible: false }} />
+      <Card
+        bordered={false}
+        style={{
+          width: 300,
+        }}
+      >
+        <Tabs
+          defaultActiveKey="1"
+          size="small"
+          items={["Freelancer", "Employer"].map((item) => {
+            return {
+              key: `${item}`,
+              label: `${item}`,
+              children: loginForm(),
+            };
+          })}
+        />
+      </Card>
+    </Flex>
+  );
+};
