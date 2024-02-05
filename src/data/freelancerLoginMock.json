@@ -1,0 +1,41 @@
+[
+	{	"id": 1,
+		"name": "Payal Sasmal",
+		"phone": "(692) 722-5634",
+		"email": "payal@gmail.com",
+		"password": "payal@10"
+		
+	},
+	{	
+		"id": 2,
+		"name": "Noelani Ford",
+		"phone": "(363) 779-8357",
+		"email": "oli@hotmail.com",
+		"password": "payal@10"
+		
+	},
+	{
+		"id": 3,
+		"name": "Maxine Cline",
+		"phone": "(475) 160-5532",
+		"email": "radha@gmail.com",
+		"password": "payal@10"
+		
+	},
+	{
+		"id": 4,
+		"name": "Kiona Hobbs",
+		"phone": "1-174-883-8618",
+		"email": "mohan@hotmail.org",
+		"password": "payal@10"
+		
+	},
+	{	
+		"id": 5,
+		"name": "Meghan Mcclain",
+		"phone": "(671) 813-7090",
+		"email": "puja@gmail.com",
+		"password": "payal@10"
+		
+	}
+]
