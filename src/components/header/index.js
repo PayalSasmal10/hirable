@@ -7,23 +7,23 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { Modal, Popover } from "antd";
 
 export default function Header() {
-  const { jobDetails, filteredData, setFilteredData, updatedSearchData, name } =
+  const { jobDetails, filteredData, setFilteredData, updatedSearchData, name, logout } =
     useContext(HirableContext);
   const [searchFieldData, setSearchFieldData] = useState("");
-  const [open, setOpen] = useState([false, false]);
+  const [openPopOver, setOpenPopOver] = useState(false);
 
   const content = (
     <div>
       <Link to="/freelancerprofile">
         <p>View Profile</p>
       </Link>
-      <Link>
-        <p>Logout</p>
+      <Link to="/">
+        <p onClick={logout}>Logout</p>
       </Link>
     </div>
   );
   const handleOpenChange = (newOpen) => {
-    setOpen(newOpen);
+    setOpenPopOver(newOpen);
   };
   const onSearchHandler = (e) => {
     setSearchFieldData(e.target.value);
@@ -70,7 +70,7 @@ export default function Header() {
         title={name}
         content={content}
         trigger="click"
-        open={open}
+        open={openPopOver}
         onOpenChange={handleOpenChange}
       >
         <HiOutlineUserCircle

@@ -6,6 +6,7 @@ export const HirableContext = createContext({
   isLoggedIn: false,
   name: "",
   login: (token) => {},
+  logout: () => {},
   firsNameSetter: (name) => {},
 });
 const retrieveStoredToken = () => {
@@ -45,7 +46,8 @@ export const HirableContextProvider = ({ children }) => {
   //name data setup
   const initialName = localStorage.getItem("name");
   const [name, setName] = useState(initialName);
-
+  
+  // login handler
   const loginHandler = (token) => {
     setToken(token);
     console.log("auth context", token);
@@ -53,10 +55,17 @@ export const HirableContextProvider = ({ children }) => {
     console.log("check it is storing or not", localStorage.getItem(token));
   };
   console.log("from context", userIsLoggedIn);
+  
   // name handler
   const nameHandler = (name) => {
     setName(name);
     localStorage.setItem("name", name);
+  };
+
+  const logoutHandler = () => {
+    setToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
   };
 
   const contextValue = {
@@ -64,6 +73,7 @@ export const HirableContextProvider = ({ children }) => {
     isLoggedIn: userIsLoggedIn,
     name: name,
     login: loginHandler,
+    logout: logoutHandler,
     firsNameSetter: nameHandler,
     jobDetails,
     setJobDetails,
