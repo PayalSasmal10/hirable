@@ -1,19 +1,25 @@
 import { LoginPage } from "./components/auth/login";
 import { Freelancer } from "./components/user-profile/freelancer";
 import { Employer } from "./components/user-profile/employer";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { JobDetailsProvider } from "./store/jobDetailsContext";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import { HirableContext, HirableContextProvider } from "./store/hirableContext";
 import Freelancerpage from "./pages/freelancerpage";
+import { useContext } from "react";
 
 function App() {
+  const { isLoggedIn } = useContext(HirableContext);
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LoginPage />,
+      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/freelancer" />,
     },
     {
       path: "/freelancer",
-      element: <Freelancer />,
+      element: <Freelancer /> ,
     },
     {
       path: "/freelancerprofile",
@@ -26,10 +32,10 @@ function App() {
   ]);
 
   return (
-    <div className="">
-      <JobDetailsProvider>
+    <div className="App">
+      <HirableContextProvider>
         <RouterProvider router={router} />
-      </JobDetailsProvider>
+      </HirableContextProvider>
     </div>
   );
 }

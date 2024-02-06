@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LiaDollarSignSolid } from "react-icons/lia";
-import { JobDetailsContext } from "../../store/jobDetailsContext";
+import { HirableContext } from "../../store/hirableContext";
 import { Button } from "antd";
 
 export function JobFilter() {
   const { jobDetails, filteredData, setFilteredData, searchData } =
-    useContext(JobDetailsContext);
+    useContext(HirableContext);
   const [selectedSalaries, setSelectedSalaries] = useState([]);
   const [filterStoredData, setFilterStoredData] = useState(filteredData);
 

@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { LuDot } from "react-icons/lu";
 import { PiDotOutlineFill } from "react-icons/pi";
-import "./index.css";
-import { JobDetailsContext } from "../../store/jobDetailsContext";
+import { HirableContext } from "../../store/hirableContext";
 import { JobFilter } from "../job-details/jobFilter";
 import { Button } from "antd";
+import "./index.css";
 
 export default function JobDetails() {
-  const { filteredData } = useContext(JobDetailsContext);
-
+  const { filteredData } = useContext(HirableContext);
   return (
     <div className="job-details">
       <JobFilter />

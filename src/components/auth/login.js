@@ -3,42 +3,26 @@ import employerloginData from "../../data/employerLoginMockData.json";
 import { Button, Card, Flex, Form, Image, Input, Tabs } from "antd";
 import loginImage from "../../assets/loginImage.svg";
 import { useContext } from "react";
-import { AuthContext } from "../../store/auth-context";
-import { useNavigate } from 'react-router-dom';
+import { HirableContext } from "../../store/hirableContext";
+import { withLogin } from "./loginHOC";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const [form] = Form.useForm();
-  const {token, name, login, firsNameSetter} = useContext(AuthContext);
+  const authContext = useContext(HirableContext);
   const navigate = useNavigate();
+  const isLoggedIn = authContext.isLoggedIn;
+  console.log("isLoggedIn from login", isLoggedIn);
 
   const onSubmitHandler = (values, item) => {
-    console.log("item", item);
     console.log("values", values);
-    let user="";
-    if(item === "Freelancer"){
-        user = freelancerloginData.find(
-            (user) => user.email === values.email && user.password === values.password
-          );
-          if (user) {
-            console.log("Successfully Login");
-            navigate('/freelancer');
-      
-          } else {
-            console.log("Failed to Login");
-          }
-    }
-    if(item === "Employer"){
-        user = employerloginData.find(
-            (user) => user.email === values.email && user.password === values.password
-          );
-          if (user) {
-            console.log("Successfully Login");
-      
-          } else {
-            console.log("Failed to Login");
-          }
-    }
-   
+    console.log("item", item);
+
+    const loginHandler = withLogin(
+      item === "Freelancer" ? freelancerloginData : employerloginData,
+      item
+    );
+    loginHandler(values, navigate, authContext, isLoggedIn);
     form.resetFields();
   };
 

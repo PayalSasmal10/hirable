@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Input, Modal, Tag } from "antd";
 import "./freelancerProfile.css";
 import { CloseCircleOutlined, EditOutlined } from "@ant-design/icons";
-import { ProfileDetailsContext } from "../../store/profileDetailsContext";
 
 const skillLists = [
   "JavaScript",
@@ -50,7 +49,7 @@ const skillLists = [
   "NPM/Yarn",
 ];
 export function FreelancerSkills() {
-  const { userSkills, setUserSkills } = useContext(ProfileDetailsContext);
+  // const { userSkills, setUserSkills } = useContext(ProfileDetailsContext);
   const [takeInput, setTakeInput] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [filteredSkills, setFilteredSkills] = useState([]);
@@ -98,7 +97,7 @@ export function FreelancerSkills() {
   }, [takeInput]);
 
   const onModalOkHandler = () => {
-    setUserSkills(selectedSkills);
+    // setUserSkills(selectedSkills);
   };
 
   const selectedSkillsSets = () => {
@@ -133,7 +132,7 @@ export function FreelancerSkills() {
       </Card>
 
       <Modal
-        title="Basic Modal"
+        title="Edit Skills"
         open={isModalOpen}
         onOk={onModalOkHandler}
         onCancel={() => setIsModalOpen(false)}

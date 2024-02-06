@@ -2,14 +2,29 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import "./index.css";
-import { JobDetailsContext } from "../../store/jobDetailsContext";
+import { HirableContext } from "../../store/hirableContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import { Modal, Popover } from "antd";
 
 export default function Header() {
-  const { jobDetails, filteredData, setFilteredData, updatedSearchData } =
-    useContext(JobDetailsContext);
+  const { jobDetails, filteredData, setFilteredData, updatedSearchData, name } =
+    useContext(HirableContext);
   const [searchFieldData, setSearchFieldData] = useState("");
+  const [open, setOpen] = useState([false, false]);
 
+  const content = (
+    <div>
+      <Link to="/freelancerprofile">
+        <p>View Profile</p>
+      </Link>
+      <Link>
+        <p>Logout</p>
+      </Link>
+    </div>
+  );
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
+  };
   const onSearchHandler = (e) => {
     setSearchFieldData(e.target.value);
   };
@@ -36,9 +51,10 @@ export default function Header() {
   }, [searchFieldData]);
 
   const onClickHandler = () => {};
+
   return (
     <div className="header">
-      <Link>HIRABLE</Link>
+      <Link to="/">HIRABLE</Link>
       <div>
         <input
           placeholder="Search jobs here"
@@ -47,16 +63,21 @@ export default function Header() {
           className="input"
         />
         <button type="submit" onClick={onClickHandler}>
-          <BsSearch
-            size="1.5rem"
-            // style={{ position: "absolute", right: "500px" }}
-          />
+          <BsSearch size="1.5rem" />
         </button>
       </div>
-      <HiOutlineUserCircle
-        size="3em"
-        style={{ marginRight: "2rem", cursor: "pointer" }}
-      />
+      <Popover
+        title={name}
+        content={content}
+        trigger="click"
+        open={open}
+        onOpenChange={handleOpenChange}
+      >
+        <HiOutlineUserCircle
+          size="3em"
+          style={{ marginRight: "2rem", cursor: "pointer" }}
+        />
+      </Popover>
     </div>
   );
 }
