@@ -7,7 +7,13 @@ export const withLogin = (loginData, role) => {
     try {
       if (user && role === "Freelancer") {
         authContext.login(user.id);
-        authContext.firsNameSetter(user.name);
+        console.log("I am from HOC", user.email);
+        authContext.userDataSetter(
+          user.name,
+          user.email,
+          user.phone,
+          role
+        );
         navigate("/freelancer");
       } else if (user && role === "Employer") {
         navigate("/employer");

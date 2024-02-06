@@ -7,7 +7,7 @@ export const HirableContext = createContext({
   name: "",
   login: (token) => {},
   logout: () => {},
-  firsNameSetter: (name) => {},
+  userDataSetter: (name, email, phone, role) => {},
 });
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
@@ -19,7 +19,8 @@ export const HirableContextProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [selectedSalaries, setSelectedSalaries] = useState([]);
-  
+  const [userSkills, setUserSkills] = useState("");
+
   let initialToken;
   if (retrieveStoredToken()) {
     initialToken = retrieveStoredToken().token;
@@ -39,42 +40,56 @@ export const HirableContextProvider = ({ children }) => {
     setSelectedSalaries(salaries);
   };
 
-  console.log("initialToken", initialToken);
-  
   const userIsLoggedIn = !!token;
-  console.log("token from context", token);
-  //name data setup
+  //user data setup
   const initialName = localStorage.getItem("name");
+  const initialEmail = localStorage.getItem("email");
+  const initialPhone = localStorage.getItem("phone");
+  const initialrole = localStorage.getItem("role");
   const [name, setName] = useState(initialName);
-  
+  const [email, setEmail] = useState(initialEmail);
+  const [phone, setPhone] = useState(initialPhone);
+  const [role, setRole] = useState(initialrole);
+
   // login handler
   const loginHandler = (token) => {
     setToken(token);
-    console.log("auth context", token);
     localStorage.setItem("token", token);
-    console.log("check it is storing or not", localStorage.getItem(token));
   };
-  console.log("from context", userIsLoggedIn);
-  
-  // name handler
-  const nameHandler = (name) => {
+  console.log("userIsLoggedIn from context", userIsLoggedIn);
+
+  // user data handler
+  const userDataHandler = (name, email, phone, role) => {
     setName(name);
+    setEmail(email);
+    setPhone(phone);
+    setRole(role);
     localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("role", role);
   };
 
+  //
   const logoutHandler = () => {
     setToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("email");
+    localStorage.removeItem("phone");
+    localStorage.removeItem("role");
   };
 
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
     name: name,
+    email: email,
+    phone: phone,
+    role: role,
     login: loginHandler,
     logout: logoutHandler,
-    firsNameSetter: nameHandler,
+    userDataSetter: userDataHandler,
     jobDetails,
     setJobDetails,
     filteredData,
@@ -83,6 +98,8 @@ export const HirableContextProvider = ({ children }) => {
     updatedSearchData,
     selectedSalaries,
     updatedSelectedSalaries,
+    userSkills,
+    setUserSkills,
   };
 
   return (

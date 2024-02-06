@@ -15,14 +15,14 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/freelancer" />,
+      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/jobs" />,
+    },
+    {
+      path: "/jobs",
+      element: <Freelancer />,
     },
     {
       path: "/freelancer",
-      element: <Freelancer /> ,
-    },
-    {
-      path: "/freelancerprofile",
       element: <Freelancerpage />,
     },
     {
