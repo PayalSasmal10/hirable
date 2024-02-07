@@ -12,11 +12,8 @@ export const LoginPage = () => {
   const authContext = useContext(HirableContext);
   const navigate = useNavigate();
   const isLoggedIn = authContext.isLoggedIn;
-  console.log("isLoggedIn from login", isLoggedIn);
 
   const onSubmitHandler = (values, item) => {
-    console.log("values", values);
-    console.log("item", item);
 
     const loginHandler = withLogin(
       item === "Freelancer" ? freelancerloginData : employerloginData,

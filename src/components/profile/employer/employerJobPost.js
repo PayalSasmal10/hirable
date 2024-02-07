@@ -23,7 +23,7 @@ export default function EmployerJobPost() {
     <div className="card-profile-layout">
       {jobsOfEmployer.map((job) => {
         return (
-          <Card
+          <Card 
             style={{ width: "90%", display: "flex", marginTop: "1rem" }}
             className="card-profile"
           >

@@ -4,6 +4,7 @@ import Header from "../../header";
 import { Button, Card, Flex, Modal } from "antd";
 import "../userProfile.css";
 import EmployerJobPost from "./employerJobPost";
+import PostJobs from "./postJobs";
 
 export function Employer() {
   const [jobBucket, setJobBucket] = useState([]);
@@ -27,7 +28,10 @@ export function Employer() {
           open={isModalOpen}
           // onOk={onModalOkHandler}
           onCancel={() => setIsModalOpen(false)}
-        ></Modal>
+          footer=""
+        >
+          <PostJobs/>
+        </Modal>
       </div>
       <EmployerJobPost />
     </>
