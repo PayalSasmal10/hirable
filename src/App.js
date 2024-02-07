@@ -1,6 +1,4 @@
 import { LoginPage } from "./components/auth/login";
-import { Freelancer } from "./components/user-profile/freelancer";
-import { Employer } from "./components/user-profile/employer";
 import {
   createBrowserRouter,
   Navigate,
@@ -8,7 +6,9 @@ import {
 } from "react-router-dom";
 import { HirableContext, HirableContextProvider } from "./store/hirableContext";
 import Freelancerpage from "./pages/freelancerpage";
+import {EmployerPage} from "./pages/employerPage";
 import { useContext } from "react";
+import JobDetailsPage from "./pages/jobDetailsPage";
 
 function App() {
   const { isLoggedIn } = useContext(HirableContext);
@@ -19,7 +19,7 @@ function App() {
     },
     {
       path: "/jobs",
-      element: <Freelancer />,
+      element: <JobDetailsPage />,
     },
     {
       path: "/freelancer",
@@ -27,15 +27,13 @@ function App() {
     },
     {
       path: "/employer",
-      element: <Employer />,
+      element: <EmployerPage />,
     },
   ]);
 
   return (
     <div className="App">
-      <HirableContextProvider>
-        <RouterProvider router={router} />
-      </HirableContextProvider>
+        <RouterProvider router={router}/>
     </div>
   );
 }

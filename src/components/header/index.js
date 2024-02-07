@@ -47,7 +47,6 @@ export default function Header() {
 
   useEffect(() => {
     onFilteredDataChangeHandler(searchFieldData);
-    console.log("FilteredData", filteredData);
   }, [searchFieldData]);
 
   const onClickHandler = () => {};

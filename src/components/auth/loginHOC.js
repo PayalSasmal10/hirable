@@ -7,16 +7,23 @@ export const withLogin = (loginData, role) => {
     try {
       if (user && role === "Freelancer") {
         authContext.login(user.id);
-        console.log("I am from HOC", user.email);
         authContext.userDataSetter(
           user.name,
           user.email,
           user.phone,
           role
         );
-        navigate("/freelancer");
+        navigate("/jobs");
       } else if (user && role === "Employer") {
+        authContext.login(user.id);
+        authContext.userDataSetter(
+          user.name,
+          user.email,
+          user.phone,
+          role
+        );
         navigate("/employer");
+
       }
     } catch (error) {
       console.log("Unable to login", error);
