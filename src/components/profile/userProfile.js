@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Header from "../header";
 import { CgProfile } from "react-icons/cg";
 import "../../components/profile/userProfile.css";
 import { Card } from "antd";

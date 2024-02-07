@@ -30,7 +30,7 @@ ul {
 
 .listing {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .ant-card-body {
@@ -38,7 +38,8 @@ ul {
   align-items: baseline;
 }
 
-/* .jobContainer {
+.jobContainer {
   display: flex;
   justify-content: space-between;
-} */
+  margin: 0 5rem;
+}

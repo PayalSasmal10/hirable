@@ -11,9 +11,9 @@ export function Employer() {
 
   return (
     <>
-      <div className="listing">
+      <div className="">
         <div className="jobContainer">
-        <h3>Job Posted By You</h3>
+          <h3>Job Posted By You</h3>
           <Button
             type="link"
             style={{ fontSize: "20px" }}

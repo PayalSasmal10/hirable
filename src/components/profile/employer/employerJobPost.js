@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { HirableContext } from "../../../store/hirableContext";
-import { Card, Flex, Tag } from "antd";
-import Column from "antd/es/table/Column";
+import { Card, Tag } from "antd";
 
 export default function EmployerJobPost() {
   const { jobDetails, role, name, email } = useContext(HirableContext);
@@ -19,8 +18,9 @@ export default function EmployerJobPost() {
   useEffect(() => {
     fetchPostedJobs();
   }, []);
+
   return (
-    <div className="card-profile-layout" >
+    <div className="card-profile-layout">
       {jobsOfEmployer.map((job) => {
         return (
           <Card
@@ -32,7 +32,13 @@ export default function EmployerJobPost() {
                 <h2>{job.company}</h2>
               </div>
               <div>
-                <h3>{job.email}</h3>
+                <h3>Posted By : {job.name_of_the_recruiter}</h3>
+              </div>
+              <div className="style-job-post">
+                <div className="style-job-post-stat">
+                  <Tag color="blue">Posted On: {job.date}</Tag>
+                  <Tag color="blue">Applicants : {job.applicants}</Tag>
+                </div>
               </div>
               <div>
                 <h2>Job Requirements</h2>
