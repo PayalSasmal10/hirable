@@ -7,27 +7,25 @@ export default function EmployerJobPost() {
   const [jobsOfEmployer, setJobsOfEmployer] = useState([]);
   function fetchPostedJobs() {
     let user = jobDetails.filter(
-      (user) =>
-        user.name_of_the_recruiter === name &&
-        user.email === email &&
-        role === "Employer"
+      (user) => user.email === email && role === "Employer"
     );
     setJobsOfEmployer(user);
     console.log("user from employer", user);
   }
   useEffect(() => {
     fetchPostedJobs();
-  }, []);
+  }, [jobDetails]);
 
   return (
     <div className="card-profile-layout">
       {jobsOfEmployer.map((job) => {
         return (
-          <Card 
+          <Card
             style={{ width: "90%", display: "flex", marginTop: "1rem" }}
             className="card-profile"
+            key={job.name}
           >
-            <div key={job.email}>
+            <div>
               <div>
                 <h2>{job.company}</h2>
               </div>

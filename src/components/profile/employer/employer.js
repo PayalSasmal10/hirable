@@ -30,7 +30,7 @@ export function Employer() {
           onCancel={() => setIsModalOpen(false)}
           footer=""
         >
-          <PostJobs/>
+          <PostJobs setIsModalOpen={setIsModalOpen}/>
         </Modal>
       </div>
       <EmployerJobPost />

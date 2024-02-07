@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { HirableContext, HirableContextProvider } from "./store/hirableContext";
 import Freelancerpage from "./pages/freelancerpage";
-import {EmployerPage} from "./pages/employerPage";
+import { EmployerPage } from "./pages/employerPage";
 import { useContext } from "react";
 import JobDetailsPage from "./pages/jobDetailsPage";
 
@@ -15,10 +15,10 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/jobs" />,
+      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/freelancerjobs" />,
     },
     {
-      path: "/jobs",
+      path: "/freelancerjobs",
       element: <JobDetailsPage />,
     },
     {
@@ -26,14 +26,14 @@ function App() {
       element: <Freelancerpage />,
     },
     {
-      path: "/employer",
+      path: "/employerprofile",
       element: <EmployerPage />,
     },
   ]);
 
   return (
     <div className="App">
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </div>
   );
 }

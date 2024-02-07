@@ -1,16 +1,21 @@
-import { Button, Cascader, DatePicker, Form, Input, Select, Tag } from "antd";
+import { Button, ConfigProvider, DatePicker, Form, Input, Tag } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { skillLists } from "../../../data/skillsLists";
 import { HirableContext } from "../../../store/hirableContext";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import locale from 'antd/locale/zh_CN';
+import dayjs from 'dayjs';
 
-export default function PostJobs() {
+import 'dayjs/locale/zh-cn';
+
+export default function PostJobs({ setIsModalOpen }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileSizeError, setFileSizeError] = useState(null);
   const [takeInput, setTakeInput] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [filteredSkills, setFilteredSkills] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const { jobDetails, setJobDetails, name } = useContext(HirableContext);
   const [form] = Form.useForm();
 
   const onChangeHandler = (e) => {
@@ -70,7 +75,6 @@ export default function PostJobs() {
     );
   };
 
-  console.log("skillLists", skillLists);
   const fileChangeHandler = (e) => {
     const selectfile = e.target.files[0];
     if (selectfile) {
@@ -85,8 +89,24 @@ export default function PostJobs() {
   };
 
   const onSubmitHandler = (values) => {
-    console.log(values);
+    console.log("values", values.dateString);
+    console.log(typeof (values.dateString));
+    const newJobDetails = {
+      company: values.company,
+      email: values.email,
+      name_of_the_recruiter: name,
+      job_requirement: values.job_requirement,
+      job_description: values.job_description,
+      skills: [...values.skills],
+      date: values.dateString,
+      applicants: 0,
+
+    };
+    setJobDetails([...jobDetails, newJobDetails]);
+
+    setIsModalOpen(false);
   };
+  console.log("jobDetails", jobDetails);
 
   // form css
   const formItemLayout = {
@@ -119,7 +139,7 @@ export default function PostJobs() {
     >
       <Form.Item
         label="Company Name"
-        name="company-name"
+        name="company"
         rules={[
           {
             required: true,
@@ -131,7 +151,7 @@ export default function PostJobs() {
       </Form.Item>
       <Form.Item
         label="Contact Info"
-        name="company-info"
+        name="email"
         rules={[
           {
             required: true,
@@ -143,7 +163,7 @@ export default function PostJobs() {
       </Form.Item>
       <Form.Item
         label="Job Requirements"
-        name="requirements"
+        name="job_requirement"
         rules={[
           {
             required: true,
@@ -153,7 +173,7 @@ export default function PostJobs() {
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Tags">
+      <Form.Item label="Tags" name="skills">
         {selectedSkillsSets()}
         <Input
           placeholder="Add Tags"
@@ -177,7 +197,7 @@ export default function PostJobs() {
       </Form.Item>
       <Form.Item
         label="DatePicker"
-        name="DatePicker"
+        name="date"
         rules={[
           {
             required: true,
@@ -189,10 +209,10 @@ export default function PostJobs() {
       </Form.Item>
       <Form.Item
         label="Job Description"
-        name="fileupload"
+        name="job_description"
         rules={[
           {
-            required: true,
+            required: false,
             message: "Please input!",
           },
         ]}
