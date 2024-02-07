@@ -11,23 +11,69 @@ import { useContext } from "react";
 import JobDetailsPage from "./pages/jobDetailsPage";
 
 function App() {
-  const { isLoggedIn } = useContext(HirableContext);
+  const { isLoggedIn, role } = useContext(HirableContext);
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: !isLoggedIn ? (
+  //       <LoginPage />
+  //     ) : role === "Freelancer" ? (
+  //       <Navigate to="/freelancerjobs" />
+  //     ) : (
+  //       <Navigate to="/employerprofile" />
+  //     ),
+  //   },
+  //   {
+  //     path: "/freelancerjobs",
+  //     element: <JobDetailsPage />,
+  //   },
+  //   {
+  //     path: "/freelancer",
+  //     element: <Freelancerpage />,
+  //   },
+  //   {
+  //     path: "/employerprofile",
+  //     element: <EmployerPage />,
+  //   },
+  // ]);
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: !isLoggedIn ? <LoginPage /> : <Navigate to="/freelancerjobs" />,
+      element: !isLoggedIn ? (
+        <LoginPage />
+      ) : role === "Freelancer" ? (
+        <Navigate to="/freelancerjobs" />
+      ) : (
+        <Navigate to="/employerprofile" />
+      ),
     },
     {
       path: "/freelancerjobs",
-      element: <JobDetailsPage />,
+      element:
+        isLoggedIn && role === "Freelancer" ? (
+          <JobDetailsPage />
+        ) : (
+          <Navigate to="/" />
+        ),
     },
     {
-      path: "/freelancer",
-      element: <Freelancerpage />,
+      path: "/freelancerprofile",
+      element:
+        isLoggedIn && role === "Freelancer" ? (
+          <Freelancerpage />
+        ) : (
+          <Navigate to="/" />
+        ),
     },
     {
       path: "/employerprofile",
-      element: <EmployerPage />,
+      element:
+        isLoggedIn && role === "Employer" ? (
+          <EmployerPage />
+        ) : (
+          <Navigate to="/" />
+        ),
     },
   ]);
 
