@@ -19,7 +19,7 @@ export const HirableContextProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [selectedSalaries, setSelectedSalaries] = useState([]);
-  const [userSkills, setUserSkills] = useState("");
+  const [userSkills, setUserSkills] = useState([]);
 
   let initialToken;
   if (retrieveStoredToken()) {

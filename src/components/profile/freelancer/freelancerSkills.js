@@ -5,7 +5,6 @@ import { HirableContext } from "../../../store/hirableContext";
 import { skillLists } from "../../../data/skillsLists";
 import "../userProfile.css";
 
-
 export function FreelancerSkills() {
   const { userSkills, setUserSkills } = useContext(HirableContext);
   const [takeInput, setTakeInput] = useState("");
@@ -30,11 +29,20 @@ export function FreelancerSkills() {
     }
   };
 
+  // add skills
   const addSkills = (skill) => {
     if (!selectedSkills.includes(skill)) {
       setSelectedSkills([...selectedSkills, skill]);
       setTakeInput("");
     }
+  };
+
+  const deleteSkills = (skill) => {
+    console.log("event", skill);
+    const newUserSkills = userSkills.filter((s, index) => s !== skill);
+    console.log("newUserSkills", newUserSkills);
+    setUserSkills(newUserSkills);
+    setSelectedSkills(newUserSkills);
   };
 
   const handleKeyPress = (e) => {
@@ -56,6 +64,7 @@ export function FreelancerSkills() {
 
   const onModalOkHandler = () => {
     setUserSkills(selectedSkills);
+    setIsModalOpen(false);
   };
 
   const selectedSkillsSets = () => {
@@ -64,9 +73,11 @@ export function FreelancerSkills() {
         {selectedSkills.map((selectSkill) => (
           <Tag
             closeIcon={<CloseCircleOutlined />}
-            onClose={() => console.log(selectSkill)}
+            onClose={() => deleteSkills(selectSkill)}
             color="processing"
             style={{ fontSize: "1rem", padding: "0.5rem" }}
+            // onCancel={handleCancel}
+            key={selectSkill}
           >
             {selectSkill}
           </Tag>
@@ -77,19 +88,30 @@ export function FreelancerSkills() {
 
   return (
     <div className="listing">
-      <Card style={{ width: "90%", display: "flex" }} className="card-profile">
+      <Card className="card-profile">
         <h3>Key Skills</h3>
         <Button
           icon={
             <EditOutlined style={{ fontSize: "1.5rem", paddingLeft: "10px" }} />
           }
-          style={{ border: "none" }}
+          style={{ border: "none", marginRight: "1rem" }}
           onClick={() => setIsModalOpen(true)}
         />
-        <div>
-          <span> </span>
-          {userSkills}
-        </div>
+        {userSkills.map((skill) => (
+          <Tag
+            closeIcon={<CloseCircleOutlined />}
+            onClose={() => deleteSkills(skill)}
+            color="blue"
+            style={{
+              display: "flex",
+              fontSize: "1rem",
+              padding: "0.5rem",
+            }}
+            key={skill}
+          >
+            {skill}
+          </Tag>
+        ))}
       </Card>
 
       <Modal
