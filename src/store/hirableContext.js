@@ -17,7 +17,7 @@ const retrieveStoredToken = () => {
 export const HirableContextProvider = ({ children }) => {
   const [jobDetails, setJobDetails] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchData, setSearchData] = useState([]);
   const [selectedSalaries, setSelectedSalaries] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
@@ -40,12 +40,16 @@ export const HirableContextProvider = ({ children }) => {
 
   // job data set and update
   useEffect(() => {
-    setTimeout(() => {
-      setJobDetails(data);
-      setFilteredData(data);
-      setIsLoading(false);
-    }, 2000);
+    setIsLoading(true);
+    setJobDetails(data);
+    setFilteredData(data);
   }, []);
+
+  useEffect(() => {
+    if (filteredData.length > 0) {
+      setIsLoading(false);
+    }
+  }, [filteredData]);
 
   const updatedSearchData = (searchValue) => {
     setSearchData(searchValue);

@@ -68,6 +68,8 @@ export default function JobDetails() {
           total={filteredData.length}
           pageSize={itemsPerPage}
           onChange={(page) => setCurrentPage(page)}
+          hideOnSinglePage="false"
+          style={{ margin: "1rem 0" }}
         />
       </div>
     </div>
