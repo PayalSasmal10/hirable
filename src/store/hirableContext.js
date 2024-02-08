@@ -40,8 +40,11 @@ export const HirableContextProvider = ({ children }) => {
 
   // job data set and update
   useEffect(() => {
-    setJobDetails(data);
-    setFilteredData(data);
+    setTimeout(() => {
+      setJobDetails(data);
+      setFilteredData(data);
+      setIsLoading(false);
+    }, 2000);
   }, []);
 
   const updatedSearchData = (searchValue) => {

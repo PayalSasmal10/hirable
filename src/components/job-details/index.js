@@ -7,7 +7,7 @@ import { Button, Pagination, Skeleton } from "antd";
 import "./index.css";
 
 export default function JobDetails() {
-  const { filteredData } = useContext(HirableContext);
+  const { filteredData, isLoading } = useContext(HirableContext);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -23,8 +23,14 @@ export default function JobDetails() {
       <div className="card-layout">
         <h1>Recommended jobs for you</h1>
         {/* <Pagination > */}
-        <Skeleton paragraph={{ rows: 4 }} loading={!filteredData.length}>
-          {currentPageData.map((jobdetail) => {
+        {isLoading ? (
+          Array.from({length: itemsPerPage}).map((_, index) => (
+            <div className="card" key={index}>
+              <Skeleton active paragraph={{ row : 4}}/>
+            </div>
+          ))
+        ) : (
+          currentPageData.map((jobdetail) => {
             return (
               <div className="card" key={jobdetail.guid}>
                 <div className="content">
@@ -56,14 +62,15 @@ export default function JobDetails() {
                 <Button type="primary">Easy Apply</Button>
               </div>
             );
-          })}
-        </Skeleton>
+          })
+        )}
         <Pagination
           defaultCurrent={1}
           current={currentPage}
           total={filteredData.length}
           pageSize={itemsPerPage}
-          onChange={(page) => setCurrentPage(page)}/>
+          onChange={(page) => setCurrentPage(page)}
+        />
       </div>
     </div>
   );
