@@ -54,17 +54,19 @@ export default function Header({
       <Link to="/" className={`title ${theme}`}>
         HIRABLE
       </Link>
-      <Space direction="vertical">
-        <Search
-          placeholder="Search jobs here"
-          onChange={onSearchHandler}
-          onSearch={onClickHandler}
-          enterButton="Search"
-          size="large"
-          value={searchFieldData}
-          style={{ width: "100" }}
-        />
-      </Space>
+      {role === "Freelancer" && (
+        <Space direction="vertical">
+          <Search
+            placeholder="Search jobs here"
+            onChange={onSearchHandler}
+            onSearch={onClickHandler}
+            enterButton="Search"
+            size="large"
+            value={searchFieldData}
+            style={{ width: "100" }}
+          />
+        </Space>
+      )}
       <Button onClick={themeChangeHandler}>
         {theme === "light" ? <SunOutlined /> : <MoonOutlined />}
       </Button>

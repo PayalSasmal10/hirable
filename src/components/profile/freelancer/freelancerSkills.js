@@ -90,11 +90,10 @@ export function FreelancerSkills() {
       <Card className={`card-profile ${theme}`}>
         <h3>Key Skills</h3>
         <Button
-          icon={
-            <EditOutlined style={{ fontSize: "1.5rem", paddingLeft: "10px" }} />
-          }
-          style={{ border: "none", marginRight: "1rem" }}
+          icon={<EditOutlined style={{ fontSize: "1.5rem" }} />}
+          style={{ border: "none", margin: "0 0.5rem" }}
           onClick={() => setIsModalOpen(true)}
+          className={theme}
         />
         {userSkills.map((skill) => (
           <Tag
