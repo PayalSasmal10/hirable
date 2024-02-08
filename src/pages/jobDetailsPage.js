@@ -33,6 +33,8 @@ export default function JobDetailsPage() {
     setSearchFieldData(e.target.value);
   };
 
+  console.log(filteredData);
+
   const onFilteredDataChangeHandler = (valueToBeSearched) => {
     if (valueToBeSearched !== "" && selectedSalaries.length === 0) {
       console.log("First if");
@@ -71,7 +73,6 @@ export default function JobDetailsPage() {
 
   const onClickHandler = () => {
     onFilteredDataChangeHandler(searchFieldData);
-    setSearchFieldData("");
   };
 
   return (

@@ -64,6 +64,7 @@ export default function Header({
             size="large"
             value={searchFieldData}
             style={{ width: "100" }}
+            allowClear
           />
         </Space>
       )}

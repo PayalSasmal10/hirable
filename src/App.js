@@ -52,6 +52,10 @@ function App() {
           <Navigate to="/" />
         ),
     },
+    {
+      path: "*",
+      element: <Navigate to="/" />,
+    },
   ]);
 
   return (
