@@ -4,67 +4,50 @@ import { BsSearch } from "react-icons/bs";
 import "./index.css";
 import { HirableContext } from "../../store/hirableContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { Modal, Popover } from "antd";
+import { Modal, Popover, Space } from "antd";
+import Search from "antd/es/input/Search";
 
-export default function Header() {
-  const { jobDetails, filteredData, setFilteredData, updatedSearchData, name, logout } =
-    useContext(HirableContext);
-  const [searchFieldData, setSearchFieldData] = useState("");
+export default function Header({ name, logout, onSearchHandler, role }) {
   const [openPopOver, setOpenPopOver] = useState(false);
-
   const content = (
     <div>
-      <Link to="/freelancerprofile">
-        <p>View Profile</p>
-      </Link>
-      <Link to="/">
-        <p onClick={logout}>Logout</p>
-      </Link>
+      {role === "Freelancer" ? (
+        <>
+          <Link to="/freelancerprofile">
+            <p>View Profile</p>
+          </Link>
+          <Link to="/">
+            <p onClick={logout}>Logout</p>
+          </Link>
+        </>
+      ) : (
+        <Link to="/">
+          <p onClick={logout}>Logout</p>
+        </Link>
+      )}
     </div>
   );
   const handleOpenChange = (newOpen) => {
     setOpenPopOver(newOpen);
   };
-  const onSearchHandler = (e) => {
-    setSearchFieldData(e.target.value);
-  };
-
-  const onFilteredDataChangeHandler = (valueToBeSearched) => {
-    if (valueToBeSearched !== "") {
-      const data = jobDetails.filter((jobdetail) => {
-        return jobdetail.skills
-          .join(", ")
-          .toLowerCase()
-          .includes(valueToBeSearched.toLowerCase());
-      });
-      setFilteredData(data);
-      updatedSearchData(valueToBeSearched);
-    } else if (valueToBeSearched.trim() === "") {
-      setFilteredData(jobDetails);
-      updatedSearchData("");
-    }
-  };
-
-  useEffect(() => {
-    onFilteredDataChangeHandler(searchFieldData);
-  }, [searchFieldData]);
 
   const onClickHandler = () => {};
 
   return (
     <div className="header">
       <Link to="/">HIRABLE</Link>
-      <div>
-        <input
+      <Space direction="vertical">
+        <Search
           placeholder="Search jobs here"
-          type="text"
           onChange={onSearchHandler}
-          className="input"
+          // onSearch={onClickHandler}
+          enterButton
+          allowClear
         />
-        <button type="submit" onClick={onClickHandler}>
-          <BsSearch size="1.5rem" />
-        </button>
-      </div>
+      </Space>
+      {/* <button type="submit" onClick={onClickHandler}>
+        <BsSearch size="1.5rem" />
+      </button> */}
       <Popover
         title={name}
         content={content}

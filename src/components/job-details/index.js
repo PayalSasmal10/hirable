@@ -1,13 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { LuDot } from "react-icons/lu";
 import { PiDotOutlineFill } from "react-icons/pi";
-import { HirableContext } from "../../store/hirableContext";
 import { JobFilter } from "../job-details/jobFilter";
 import { Button, Pagination, Skeleton } from "antd";
 import "./index.css";
 
-export default function JobDetails() {
-  const { filteredData, isLoading } = useContext(HirableContext);
+export default function JobDetails({
+  filteredData,
+  selectedSalaries,
+  isLoading,
+  setSelectedSalaries,
+  salaryRange,
+}) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -19,7 +23,11 @@ export default function JobDetails() {
   const currentPageData = filteredData.slice(startIndex, endIndex);
   return (
     <div className="job-details">
-      <JobFilter />
+      <JobFilter
+        selectedSalaries={selectedSalaries}
+        setSelectedSalaries={setSelectedSalaries}
+        salaryRange={salaryRange}
+      />
       <div className="card-layout">
         <h1>Recommended jobs for you</h1>
         {isLoading
