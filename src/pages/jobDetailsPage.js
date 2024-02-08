@@ -64,18 +64,24 @@ export default function JobDetailsPage() {
     },
     [searchFieldData, selectedSalaries]
   );
-
-  useEffect(() => {
+  
+  const onClickHandler = () => {
     onFilteredDataChangeHandler(searchFieldData);
-  }, [searchFieldData, onFilteredDataChangeHandler]);
+  };
+
+
+  // useEffect(() => {
+  //   onFilteredDataChangeHandler(searchFieldData);
+  // }, [searchFieldData, onFilteredDataChangeHandler]);
 
   return (
     <>
       <Header
         name={name}
         logout={logout}
-        onSearchHandler={onSearchHandler}
+        onClickHandler={onClickHandler}
         role={role}
+        onSearchHandler={onSearchHandler}
       />
       <JobDetails
         filteredData={filteredData}
@@ -83,6 +89,7 @@ export default function JobDetailsPage() {
         selectedSalaries={selectedSalaries}
         setSelectedSalaries={setSelectedSalaries}
         salaryRange={salaryRange}
+        onClickHandler={onClickHandler}
       />
     </>
   );

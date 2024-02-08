@@ -7,7 +7,7 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { Modal, Popover, Space } from "antd";
 import Search from "antd/es/input/Search";
 
-export default function Header({ name, logout, onSearchHandler, role }) {
+export default function Header({ name, logout, onClickHandler, role, onSearchHandler }) {
   const [openPopOver, setOpenPopOver] = useState(false);
   const content = (
     <div>
@@ -31,7 +31,6 @@ export default function Header({ name, logout, onSearchHandler, role }) {
     setOpenPopOver(newOpen);
   };
 
-  const onClickHandler = () => {};
 
   return (
     <div className="header">
@@ -40,7 +39,7 @@ export default function Header({ name, logout, onSearchHandler, role }) {
         <Search
           placeholder="Search jobs here"
           onChange={onSearchHandler}
-          // onSearch={onClickHandler}
+          onSearch={onClickHandler}
           enterButton
           allowClear
         />

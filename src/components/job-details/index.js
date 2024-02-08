@@ -11,6 +11,7 @@ export default function JobDetails({
   isLoading,
   setSelectedSalaries,
   salaryRange,
+  onClickHandler
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -27,6 +28,7 @@ export default function JobDetails({
         selectedSalaries={selectedSalaries}
         setSelectedSalaries={setSelectedSalaries}
         salaryRange={salaryRange}
+        onClickHandler={onClickHandler}
       />
       <div className="card-layout">
         <h1>Recommended jobs for you</h1>

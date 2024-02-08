@@ -3,7 +3,7 @@ import { LiaDollarSignSolid } from "react-icons/lia";
 import { HirableContext } from "../../store/hirableContext";
 import { Button } from "antd";
 
-export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange}) {
+export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange, onClickHandler}) {
 
   const onchangeHandler = (e) => {
     const value = e.target.value;
@@ -34,6 +34,10 @@ export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange}) 
           </div>
         ))}
       </div>
+      <div className="easy-apply-btn">
+          <Button type="primary" onClick={onClickHandler}>Apply</Button>
+      </div>
     </div>
+
   );
 }
