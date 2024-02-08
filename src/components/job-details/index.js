@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PiDotOutlineFill } from "react-icons/pi";
 import { JobFilter } from "../job-details/jobFilter";
-import { Button, Pagination, Skeleton, Tag } from "antd";
+import { Button, Pagination, Popover, Skeleton, Tag } from "antd";
 import "./index.css";
 
 export default function JobDetails({
@@ -30,7 +30,22 @@ export default function JobDetails({
         setSelectedSalaries={setSelectedSalaries}
         salaryRange={salaryRange}
         onClickHandler={onClickHandler}
+        jobFilterStyle="filter-container"
       />
+      <Popover
+        placement="bottom"
+        content={
+          <JobFilter
+            selectedSalaries={selectedSalaries}
+            setSelectedSalaries={setSelectedSalaries}
+            salaryRange={salaryRange}
+            onClickHandler={onClickHandler}
+          />
+        }
+        className="filter-container-popover"
+      >
+        <Button className="btn-filter-popover">Select Salary Range</Button>
+      </Popover>
       <div className="card-layout">
         <h1>Job Lists</h1>
         {isLoading

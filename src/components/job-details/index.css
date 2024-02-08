@@ -1,7 +1,6 @@
 .job-details {
   display: flex;
-  /* justify-content: space-around; */
-  margin-top: 5rem;
+  padding-top: 5rem;
   position: relative;
   z-index: 10;
 }
@@ -54,4 +53,33 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 1rem 0 2rem 1rem;
   border-radius: 1rem;
+}
+
+.btn-filter-popover {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .job-details {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12rem;
+  }
+
+  .btn-filter-popover {
+    margin-top: 1rem;
+  }
+
+  .filter-container {
+    display: none;
+  }
+
+  .filter-container-popover {
+    display: block;
+    width: fit-content;
+  }
+
+  .card-layout {
+    width: 95%;
+  }
 }

@@ -21,15 +21,9 @@
 }
 
 .title.dark {
-  color: #fff;
+  color: #fff;
 }
 
-.header input[type="text"] {
-  float: right;
-  padding: 5px;
-  width: 600px;
-  height: 40px;
-}
 .header button {
   margin: 0;
   cursor: pointer;
@@ -42,3 +36,14 @@
   background: rgba(0, 0, 0, 0);
 }
 
+/* Media query */
+
+@media screen and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header button {
+    margin-bottom: 6px;
+  }
+}

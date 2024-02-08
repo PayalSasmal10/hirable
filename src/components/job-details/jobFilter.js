@@ -6,6 +6,7 @@ export function JobFilter({
   setSelectedSalaries,
   salaryRange,
   onClickHandler,
+  jobFilterStyle,
 }) {
   const onchangeHandler = (e) => {
     const value = e.target.value;
@@ -20,7 +21,7 @@ export function JobFilter({
   };
 
   return (
-    <div className="filter-container">
+    <div className={jobFilterStyle}>
       <div>
         <h3>All Filters</h3>
         {salaryRange.map((salary) => (

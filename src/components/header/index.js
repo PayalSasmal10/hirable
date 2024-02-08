@@ -52,7 +52,7 @@ export default function Header({
   return (
     <div className={`header ${theme}`}>
       <Link to="/" className={`title ${theme}`}>
-        HIRABLE       
+        HIRABLE
       </Link>
       <Space direction="vertical">
         <Search
@@ -62,6 +62,7 @@ export default function Header({
           enterButton="Search"
           size="large"
           value={searchFieldData}
+          style={{ width: "100" }}
         />
       </Space>
       <Button onClick={themeChangeHandler}>
@@ -76,7 +77,7 @@ export default function Header({
       >
         <HiOutlineUserCircle
           size="3em"
-          style={{ marginRight: "2rem", cursor: "pointer" }}
+          style={{ margin: "0 2rem", cursor: "pointer" }}
         />
       </Popover>
     </div>
