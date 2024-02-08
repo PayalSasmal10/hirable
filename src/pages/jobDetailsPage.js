@@ -32,9 +32,9 @@ export default function JobDetailsPage() {
     setSearchFieldData(e.target.value);
   };
 
-  const onFilteredDataChangeHandler = useCallback(
-    (valueToBeSearched) => {
+  const onFilteredDataChangeHandler = (valueToBeSearched) => {
       if (valueToBeSearched !== "" && selectedSalaries.length === 0) {
+        console.log("First if");
         const data = jobDetails.filter((jobdetail) => {
           return jobdetail.skills
             .join(", ")
@@ -43,7 +43,8 @@ export default function JobDetailsPage() {
         });
         setFilteredData(data);
         updatedSearchData(valueToBeSearched);
-      } else if (valueToBeSearched !== "" && selectedSalaries.length > 0) {
+      } else if (valueToBeSearched === "" && selectedSalaries.length > 0 || valueToBeSearched !== "" && selectedSalaries.length > 0) {
+        console.log("2nd if");
         const data = jobDetails.filter((jobDetail) => {
           return (
             jobDetail.skills
@@ -58,17 +59,18 @@ export default function JobDetailsPage() {
         valueToBeSearched.trim() === "" &&
         selectedSalaries.length === 0
       ) {
+        console.log("3rd if");
         setFilteredData(jobDetails);
         updatedSearchData("");
       }
-    },
-    [searchFieldData, selectedSalaries]
-  );
+    };
+
+
   
+
   const onClickHandler = () => {
     onFilteredDataChangeHandler(searchFieldData);
   };
-
 
   // useEffect(() => {
   //   onFilteredDataChangeHandler(searchFieldData);
