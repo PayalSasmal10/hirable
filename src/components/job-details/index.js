@@ -22,7 +22,6 @@ export default function JobDetails() {
       <JobFilter />
       <div className="card-layout">
         <h1>Recommended jobs for you</h1>
-        {/* <Pagination > */}
         {isLoading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
               <div className="card" key={index}>
@@ -68,8 +67,8 @@ export default function JobDetails() {
           total={filteredData.length}
           pageSize={itemsPerPage}
           onChange={(page) => setCurrentPage(page)}
-          hideOnSinglePage="false"
           style={{ margin: "1rem 0" }}
+          showSizeChanger={false}
         />
       </div>
     </div>
