@@ -76,7 +76,6 @@ export function FreelancerSkills() {
             onClose={() => deleteSkills(selectSkill)}
             color="processing"
             style={{ fontSize: "1rem", padding: "0.5rem" }}
-            // onCancel={handleCancel}
             key={selectSkill}
           >
             {selectSkill}
@@ -120,16 +119,6 @@ export function FreelancerSkills() {
         onOk={onModalOkHandler}
         onCancel={() => setIsModalOpen(false)}
       >
-        {/* {selectedSkills.map((selectSkill) => (
-          <Tag
-            closeIcon={<CloseCircleOutlined />}
-            onClose={() => console.log(selectSkill)}
-            color="processing"
-            style={{ fontSize: "1rem", padding: "0.5rem" }}
-          >
-            {selectSkill}
-          </Tag>
-        ))} */}
         {selectedSkillsSets()}
         <Input
           placeholder="Add Skills"

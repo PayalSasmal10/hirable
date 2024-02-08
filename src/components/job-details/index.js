@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LuDot } from "react-icons/lu";
 import { PiDotOutlineFill } from "react-icons/pi";
 import { JobFilter } from "../job-details/jobFilter";
-import { Button, Pagination, Skeleton } from "antd";
+import { Button, Pagination, Skeleton, Tag } from "antd";
 import "./index.css";
 
 export default function JobDetails({
@@ -11,9 +11,10 @@ export default function JobDetails({
   isLoading,
   setSelectedSalaries,
   salaryRange,
-  onClickHandler
+  onClickHandler,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
+  // State to track hovered job requirement
   const itemsPerPage = 10;
 
   //calculate the index range
@@ -31,7 +32,7 @@ export default function JobDetails({
         onClickHandler={onClickHandler}
       />
       <div className="card-layout">
-        <h1>Recommended jobs for you</h1>
+        <h1>Job Lists</h1>
         {isLoading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
               <div className="card" key={index}>
@@ -54,17 +55,14 @@ export default function JobDetails({
                       <span>{jobdetail.region}</span>
                     </div>
                     <div>
-                      <span>hi ther.........</span>
+                      <span>{jobdetail.job_requirement}</span>
                     </div>
                     <div>
-                      <span>
-                        {jobdetail.skills.map((skill) => (
-                          <span key={skill}>
-                            {skill}
-                            <LuDot />
-                          </span>
-                        ))}
-                      </span>
+                      {jobdetail.skills.map((skill) => (
+                        <Tag color="blue" key={skill}>
+                          {skill}
+                        </Tag>
+                      ))}
                     </div>
                   </div>
                   <Button type="primary">Easy Apply</Button>

@@ -3,7 +3,6 @@ import { CgProfile } from "react-icons/cg";
 import "../../components/profile/userProfile.css";
 import { Card } from "antd";
 import { HirableContext } from "../../store/hirableContext";
-// import "../userProfile.css";
 
 export function UserProfile() {
   const { name, email, phone, role } = useContext(HirableContext);

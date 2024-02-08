@@ -3,7 +3,7 @@ import { HirableContext } from "../../../store/hirableContext";
 import { Card, Tag } from "antd";
 
 export default function EmployerJobPost() {
-  const { jobDetails, role, name, email } = useContext(HirableContext);
+  const { jobDetails, role, email } = useContext(HirableContext);
   const [jobsOfEmployer, setJobsOfEmployer] = useState([]);
   function fetchPostedJobs() {
     let user = jobDetails.filter(

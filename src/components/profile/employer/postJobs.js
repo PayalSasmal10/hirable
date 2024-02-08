@@ -1,12 +1,8 @@
-import { Button, ConfigProvider, DatePicker, Form, Input, Tag } from "antd";
+import { Button, DatePicker, Form, Input, Tag } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { skillLists } from "../../../data/skillsLists";
 import { HirableContext } from "../../../store/hirableContext";
 import { CloseCircleOutlined } from "@ant-design/icons";
-import locale from 'antd/locale/zh_CN';
-import dayjs from 'dayjs';
-
-import 'dayjs/locale/zh-cn';
 
 export default function PostJobs({ setIsModalOpen }) {
   const [selectedFile, setSelectedFile] = useState(null);

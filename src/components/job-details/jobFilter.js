@@ -1,12 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
 import { LiaDollarSignSolid } from "react-icons/lia";
-import { HirableContext } from "../../store/hirableContext";
 import { Button } from "antd";
 
-export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange, onClickHandler}) {
-
+export function JobFilter({
+  selectedSalaries,
+  setSelectedSalaries,
+  salaryRange,
+  onClickHandler,
+}) {
   const onchangeHandler = (e) => {
     const value = e.target.value;
+    console.log("selected salary", value);
     if (selectedSalaries.includes(value)) {
       setSelectedSalaries(
         selectedSalaries.filter((salary) => salary !== value)
@@ -15,7 +18,6 @@ export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange, o
       setSelectedSalaries([...selectedSalaries, value]);
     }
   };
- 
 
   return (
     <div className="filter-container">
@@ -35,9 +37,10 @@ export function JobFilter({selectedSalaries, setSelectedSalaries, salaryRange, o
         ))}
       </div>
       <div className="easy-apply-btn">
-          <Button type="primary" onClick={onClickHandler}>Apply</Button>
+        <Button type="primary" onClick={onClickHandler}>
+          Apply
+        </Button>
       </div>
     </div>
-
   );
 }

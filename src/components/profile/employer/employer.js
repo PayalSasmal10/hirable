@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { UserProfile } from "../userProfile";
-import Header from "../../header";
-import { Button, Card, Flex, Modal } from "antd";
-import "../userProfile.css";
+import { Button, Modal } from "antd";
 import EmployerJobPost from "./employerJobPost";
 import PostJobs from "./postJobs";
+import "../userProfile.css";
 
 export function Employer() {
-  const [jobBucket, setJobBucket] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -26,7 +23,6 @@ export function Employer() {
         <Modal
           title="Add Jobs"
           open={isModalOpen}
-          // onOk={onModalOkHandler}
           onCancel={() => setIsModalOpen(false)}
           footer=""
         >

@@ -11,6 +11,7 @@ export default function Header({
   onClickHandler,
   role,
   onSearchHandler,
+  searchFieldData,
 }) {
   const [openPopOver, setOpenPopOver] = useState(false);
   const content = (
@@ -45,7 +46,7 @@ export default function Header({
           onSearch={onClickHandler}
           enterButton="Search"
           size="large"
-          allowClear
+          value={searchFieldData}
         />
       </Space>
       <Popover

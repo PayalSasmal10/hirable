@@ -19,7 +19,6 @@ export const HirableContextProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchData, setSearchData] = useState([]);
-  const [selectedSalaries, setSelectedSalaries] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
   //user data setup
   const initialName = localStorage.getItem("name");
@@ -55,16 +54,11 @@ export const HirableContextProvider = ({ children }) => {
     setSearchData(searchValue);
   };
 
-  const updatedSelectedSalaries = (salaries) => {
-    setSelectedSalaries(salaries);
-  };
-
   // login handler
   const loginHandler = (token) => {
     setToken(token);
     localStorage.setItem("token", token);
   };
-  console.log("userIsLoggedIn from context", userIsLoggedIn);
 
   // user data handler
   const userDataHandler = (name, email, phone, role) => {
@@ -78,7 +72,7 @@ export const HirableContextProvider = ({ children }) => {
     localStorage.setItem("role", role);
   };
 
-  //
+  //logout handler
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
@@ -105,8 +99,6 @@ export const HirableContextProvider = ({ children }) => {
       setFilteredData,
       searchData,
       updatedSearchData,
-      selectedSalaries,
-      updatedSelectedSalaries,
       userSkills,
       setUserSkills,
       isLoading,
@@ -122,7 +114,6 @@ export const HirableContextProvider = ({ children }) => {
       jobDetails,
       filteredData,
       searchData,
-      selectedSalaries,
       userSkills,
       isLoading,
     ]

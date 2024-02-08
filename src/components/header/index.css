@@ -21,12 +21,20 @@
   float: right;
   padding: 5px;
   width: 600px;
-  height: 41px;
+  height: 40px;
 }
 .header button {
+  margin: 0;
   cursor: pointer;
 }
 
 .profile {
   cursor: pointer;
+}
+
+.ant-input-group-addon {
+  background: rgba(0, 0, 0, 0);
+}
+
+.ant-btn-primary {
 }
