@@ -1,0 +1,27 @@
+.login {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 1.5rem;
+}
+
+.login img {
+  width: 40%;
+}
+
+@media screen and (min-width: 600px) {
+  .login {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .login {
+    flex-direction: column;
+    margin: 0 0.5rem;
+  }
+
+  .login img {
+    width: 50%;
+  }
+}

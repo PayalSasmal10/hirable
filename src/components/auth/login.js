@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { HirableContext } from "../../store/hirableContext";
 import { withLogin } from "./loginHOC";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 export const LoginPage = () => {
   const [form] = Form.useForm();
@@ -90,7 +91,7 @@ export const LoginPage = () => {
   };
 
   return (
-    <Flex justify="space-around" align="center" style={{ height: "100vh" }}>
+    <div className="login">
       <Image src={loginImage} preview={{ visible: false }} />
       <Card
         bordered={false}
@@ -112,6 +113,6 @@ export const LoginPage = () => {
           })}
         />
       </Card>
-    </Flex>
+    </div>
   );
 };

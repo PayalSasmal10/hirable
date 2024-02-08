@@ -43,3 +43,11 @@ ul {
   justify-content: space-between;
   margin: 0 5rem;
 }
+
+/* Media query */
+
+@media screen and (max-width: 600px) {
+  .profile-job {
+    padding-top: 14rem;
+  }
+}
