@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import data from "../data/JobDetailsMockData.json";
 
 export const HirableContext = createContext({
@@ -17,16 +17,28 @@ const retrieveStoredToken = () => {
 export const HirableContextProvider = ({ children }) => {
   const [jobDetails, setJobDetails] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchData, setSearchData] = useState([]);
   const [selectedSalaries, setSelectedSalaries] = useState([]);
   const [userSkills, setUserSkills] = useState([]);
+  //user data setup
+  const initialName = localStorage.getItem("name");
+  const initialEmail = localStorage.getItem("email");
+  const initialPhone = localStorage.getItem("phone");
+  const initialrole = localStorage.getItem("role");
+  const [name, setName] = useState(initialName);
+  const [email, setEmail] = useState(initialEmail);
+  const [phone, setPhone] = useState(initialPhone);
+  const [role, setRole] = useState(initialrole);
 
   let initialToken;
   if (retrieveStoredToken()) {
     initialToken = retrieveStoredToken().token;
   }
   const [token, setToken] = useState(initialToken);
+  const userIsLoggedIn = !!token;
 
+  // job data set and update
   useEffect(() => {
     setJobDetails(data);
     setFilteredData(data);
@@ -39,17 +51,6 @@ export const HirableContextProvider = ({ children }) => {
   const updatedSelectedSalaries = (salaries) => {
     setSelectedSalaries(salaries);
   };
-
-  const userIsLoggedIn = !!token;
-  //user data setup
-  const initialName = localStorage.getItem("name");
-  const initialEmail = localStorage.getItem("email");
-  const initialPhone = localStorage.getItem("phone");
-  const initialrole = localStorage.getItem("role");
-  const [name, setName] = useState(initialName);
-  const [email, setEmail] = useState(initialEmail);
-  const [phone, setPhone] = useState(initialPhone);
-  const [role, setRole] = useState(initialrole);
 
   // login handler
   const loginHandler = (token) => {
@@ -80,27 +81,45 @@ export const HirableContextProvider = ({ children }) => {
     localStorage.removeItem("role");
   };
 
-  const contextValue = {
-    token: token,
-    isLoggedIn: userIsLoggedIn,
-    name: name,
-    email: email,
-    phone: phone,
-    role: role,
-    login: loginHandler,
-    logout: logoutHandler,
-    userDataSetter: userDataHandler,
-    jobDetails,
-    setJobDetails,
-    filteredData,
-    setFilteredData,
-    searchData,
-    updatedSearchData,
-    selectedSalaries,
-    updatedSelectedSalaries,
-    userSkills,
-    setUserSkills,
-  };
+  const contextValue = useMemo(
+    () => ({
+      token: token,
+      isLoggedIn: userIsLoggedIn,
+      name: name,
+      email: email,
+      phone: phone,
+      role: role,
+      login: loginHandler,
+      logout: logoutHandler,
+      userDataSetter: userDataHandler,
+      jobDetails,
+      setJobDetails,
+      filteredData,
+      setFilteredData,
+      searchData,
+      updatedSearchData,
+      selectedSalaries,
+      updatedSelectedSalaries,
+      userSkills,
+      setUserSkills,
+      isLoading,
+      setIsLoading,
+    }),
+    [
+      token,
+      userIsLoggedIn,
+      name,
+      email,
+      phone,
+      role,
+      jobDetails,
+      filteredData,
+      searchData,
+      selectedSalaries,
+      userSkills,
+      isLoading,
+    ]
+  );
 
   return (
     <HirableContext.Provider value={contextValue}>
