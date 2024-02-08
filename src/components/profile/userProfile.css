@@ -33,15 +33,20 @@ ul {
   justify-content: space-around;
 }
 
-.ant-card-body {
-  display: flex;
-  align-items: baseline;
-}
-
 .jobContainer {
   display: flex;
   justify-content: space-between;
   margin: 0 5rem;
+}
+
+.repo-cards {
+  width: 300px;
+  margin: 1rem;
+}
+
+.repo-cards:hover {
+  border: 2px solid gray;
+  cursor: pointer;
 }
 
 /* Media query */

@@ -88,30 +88,33 @@ export function FreelancerSkills() {
   return (
     <div className="listing">
       <Card className={`card-profile ${theme}`}>
-        <h3>Key Skills</h3>
-        <Button
-          icon={<EditOutlined style={{ fontSize: "1.5rem" }} />}
-          style={{ border: "none", margin: "0 0.5rem" }}
-          onClick={() => setIsModalOpen(true)}
-          className={theme}
-        />
-        {userSkills.map((skill) => (
-          <Tag
-            closeIcon={<CloseCircleOutlined />}
-            onClose={() => deleteSkills(skill)}
-            color="blue"
-            style={{
-              display: "flex",
-              fontSize: "1rem",
-              padding: "0.5rem",
-            }}
-            key={skill}
-          >
-            {skill}
-          </Tag>
-        ))}
+        <div style={{ display: "flex", alignItems: "baseline" }}>
+          <h3>Key Skills</h3>
+          <Button
+            icon={<EditOutlined style={{ fontSize: "1.5rem" }} />}
+            style={{ border: "none", margin: "0 0.5rem" }}
+            onClick={() => setIsModalOpen(true)}
+            className={theme}
+          />
+        </div>
+        <div style={{ display: "flex" }}>
+          {userSkills.map((skill) => (
+            <Tag
+              closeIcon={<CloseCircleOutlined />}
+              onClose={() => deleteSkills(skill)}
+              color="blue"
+              style={{
+                display: "flex",
+                fontSize: "1rem",
+                padding: "0.5rem",
+              }}
+              key={skill}
+            >
+              {skill}
+            </Tag>
+          ))}
+        </div>
       </Card>
-
       <Modal
         title="Edit Skills"
         open={isModalOpen}
