@@ -21,6 +21,11 @@
   border-radius: 1rem;
   margin-bottom: 1rem;
 }
+
+.card.dark {
+  box-shadow: rgba(181, 178, 178, 0.2) 0px 2px 8px 0px;
+}
+
 .content {
   padding: 10px 16px;
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { LuDot } from "react-icons/lu";
 import { PiDotOutlineFill } from "react-icons/pi";
 import { JobFilter } from "../job-details/jobFilter";
 import { Button, Pagination, Skeleton, Tag } from "antd";
@@ -12,6 +11,7 @@ export default function JobDetails({
   setSelectedSalaries,
   salaryRange,
   onClickHandler,
+  theme,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   // State to track hovered job requirement
@@ -41,7 +41,7 @@ export default function JobDetails({
             ))
           : currentPageData.map((jobdetail) => {
               return (
-                <div className="card" key={jobdetail.guid}>
+                <div className={`card ${theme}`} key={jobdetail.guid}>
                   <div className="content">
                     <div>
                       <h3>{jobdetail.role}</h3>

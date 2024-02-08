@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../components/header";
 import JobDetails from "../components/job-details";
 import { HirableContext } from "../store/hirableContext";
@@ -24,6 +24,7 @@ export default function JobDetailsPage() {
     logout,
     isLoading,
     role,
+    theme,
   } = useContext(HirableContext);
   const [searchFieldData, setSearchFieldData] = useState("");
   const [selectedSalaries, setSelectedSalaries] = useState([]);
@@ -70,8 +71,7 @@ export default function JobDetailsPage() {
 
   const onClickHandler = () => {
     onFilteredDataChangeHandler(searchFieldData);
-    setSearchFieldData('');
-
+    setSearchFieldData("");
   };
 
   return (
@@ -91,6 +91,7 @@ export default function JobDetailsPage() {
         setSelectedSalaries={setSelectedSalaries}
         salaryRange={salaryRange}
         onClickHandler={onClickHandler}
+        theme={theme}
       />
     </>
   );

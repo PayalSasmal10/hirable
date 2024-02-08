@@ -3,7 +3,7 @@ import { HirableContext } from "../../../store/hirableContext";
 import { Card, Tag } from "antd";
 
 export default function EmployerJobPost() {
-  const { jobDetails, role, email } = useContext(HirableContext);
+  const { jobDetails, role, email, theme } = useContext(HirableContext);
   const [jobsOfEmployer, setJobsOfEmployer] = useState([]);
   function fetchPostedJobs() {
     let user = jobDetails.filter(
@@ -22,7 +22,7 @@ export default function EmployerJobPost() {
         return (
           <Card
             style={{ width: "90%", display: "flex", marginTop: "1rem" }}
-            className="card-profile"
+            className={`card-profile ${theme}`}
             key={job.guid}
           >
             <div>

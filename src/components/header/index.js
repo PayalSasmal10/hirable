@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { Popover, Space } from "antd";
+import { Popover, Space, Button } from "antd";
 import Search from "antd/es/input/Search";
+import { HirableContext } from "../../store/hirableContext";
+import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import "./index.css";
 
 export default function Header({
   name,
   logout,
   onClickHandler,
-  role,
   onSearchHandler,
   searchFieldData,
 }) {
   const [openPopOver, setOpenPopOver] = useState(false);
+  const { theme, setTheme, role } = useContext(HirableContext);
   const content = (
     <div>
       {role === "Freelancer" ? (
@@ -36,9 +38,22 @@ export default function Header({
     setOpenPopOver(newOpen);
   };
 
+  // theme selector
+  const themeChangeHandler = () => {
+    if (theme === "light") {
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
-    <div className="header">
-      <Link to="/">HIRABLE</Link>
+    <div className={`header ${theme}`}>
+      <Link to="/" className={`title ${theme}`}>
+        HIRABLE       
+      </Link>
       <Space direction="vertical">
         <Search
           placeholder="Search jobs here"
@@ -49,6 +64,9 @@ export default function Header({
           value={searchFieldData}
         />
       </Space>
+      <Button onClick={themeChangeHandler}>
+        {theme === "light" ? <SunOutlined /> : <MoonOutlined />}
+      </Button>
       <Popover
         title={name}
         content={content}

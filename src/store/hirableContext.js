@@ -29,6 +29,17 @@ export const HirableContextProvider = ({ children }) => {
   const [email, setEmail] = useState(initialEmail);
   const [phone, setPhone] = useState(initialPhone);
   const [role, setRole] = useState(initialrole);
+  const [theme, setTheme] = useState("light");
+  
+  // theme change
+  const storedTheme = localStorage.getItem("theme");
+  if (!storedTheme) {
+    localStorage.setItem("theme", "light");
+  }
+
+  useEffect(() => {
+    setTheme(storedTheme);
+  }, [storedTheme]);
 
   let initialToken;
   if (retrieveStoredToken()) {
@@ -103,6 +114,8 @@ export const HirableContextProvider = ({ children }) => {
       setUserSkills,
       isLoading,
       setIsLoading,
+      theme, 
+      setTheme
     }),
     [
       token,
@@ -116,6 +129,7 @@ export const HirableContextProvider = ({ children }) => {
       searchData,
       userSkills,
       isLoading,
+      theme
     ]
   );
 

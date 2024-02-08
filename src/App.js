@@ -4,38 +4,15 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import { HirableContext, HirableContextProvider } from "./store/hirableContext";
+import { HirableContext } from "./store/hirableContext";
 import Freelancerpage from "./pages/freelancerpage";
 import { EmployerPage } from "./pages/employerPage";
 import { useContext } from "react";
 import JobDetailsPage from "./pages/jobDetailsPage";
+import "./App.css";
 
 function App() {
-  const { isLoggedIn, role } = useContext(HirableContext);
-  // const router = createBrowserRouter([
-  //   {
-  //     path: "/",
-  //     element: !isLoggedIn ? (
-  //       <LoginPage />
-  //     ) : role === "Freelancer" ? (
-  //       <Navigate to="/freelancerjobs" />
-  //     ) : (
-  //       <Navigate to="/employerprofile" />
-  //     ),
-  //   },
-  //   {
-  //     path: "/freelancerjobs",
-  //     element: <JobDetailsPage />,
-  //   },
-  //   {
-  //     path: "/freelancer",
-  //     element: <Freelancerpage />,
-  //   },
-  //   {
-  //     path: "/employerprofile",
-  //     element: <EmployerPage />,
-  //   },
-  // ]);
+  const { isLoggedIn, role, theme } = useContext(HirableContext);
 
   const router = createBrowserRouter([
     {
@@ -78,7 +55,7 @@ function App() {
   ]);
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <RouterProvider router={router} />
     </div>
   );

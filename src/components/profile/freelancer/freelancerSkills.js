@@ -6,7 +6,7 @@ import { skillLists } from "../../../data/skillsLists";
 import "../userProfile.css";
 
 export function FreelancerSkills() {
-  const { userSkills, setUserSkills } = useContext(HirableContext);
+  const { userSkills, setUserSkills, theme } = useContext(HirableContext);
   const [takeInput, setTakeInput] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [filteredSkills, setFilteredSkills] = useState([]);
@@ -87,7 +87,7 @@ export function FreelancerSkills() {
 
   return (
     <div className="listing">
-      <Card className="card-profile">
+      <Card className={`card-profile ${theme}`}>
         <h3>Key Skills</h3>
         <Button
           icon={

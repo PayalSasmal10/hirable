@@ -13,8 +13,15 @@
 
 .header a {
   text-decoration: none;
-  color: black;
   font-size: 1.5em;
+}
+
+.title.light {
+  color: #000;
+}
+
+.title.dark {
+  color: #fff;
 }
 
 .header input[type="text"] {
@@ -31,10 +38,7 @@
 .profile {
   cursor: pointer;
 }
-
 .ant-input-group-addon {
   background: rgba(0, 0, 0, 0);
 }
 
-.ant-btn-primary {
-}
