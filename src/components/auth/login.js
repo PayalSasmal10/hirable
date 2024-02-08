@@ -14,7 +14,6 @@ export const LoginPage = () => {
   const isLoggedIn = authContext.isLoggedIn;
 
   const onSubmitHandler = (values, item) => {
-
     const loginHandler = withLogin(
       item === "Freelancer" ? freelancerloginData : employerloginData,
       item
@@ -23,18 +22,32 @@ export const LoginPage = () => {
     form.resetFields();
   };
 
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+  const validateMessages = {
+    required: "${label} is required!",
+    types: {
+      email: "${label} is not a valid email!",
+    },
+  };
+
   const loginForm = (item) => {
     return (
       <Form
-        name="basic"
-        labelCol={{
-          span: 8,
-        }}
+        {...layout}
+        name="nest-messages"
         style={{
           maxWidth: 600,
         }}
         form={form}
         onFinish={(values) => onSubmitHandler(values, item)}
+        validateMessages={validateMessages}
       >
         <Form.Item
           label="Email"
@@ -43,6 +56,7 @@ export const LoginPage = () => {
             {
               required: true,
               message: "Please input your email!",
+              type: "email",
             },
           ]}
         >
@@ -59,7 +73,7 @@ export const LoginPage = () => {
             },
           ]}
         >
-          <Input.Password name="password" />
+          <Input.Password />
         </Form.Item>
         <Form.Item
           wrapperCol={{
