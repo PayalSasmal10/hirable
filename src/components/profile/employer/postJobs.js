@@ -34,6 +34,7 @@ export default function PostJobs({ setIsModalOpen }) {
     if (!selectedSkills.includes(skill)) {
       setSelectedSkills([...selectedSkills, skill]);
       setTakeInput("");
+      console.log("selectedSkills", selectedSkills);
     }
   };
 
@@ -63,6 +64,7 @@ export default function PostJobs({ setIsModalOpen }) {
             onClose={() => console.log(selectSkill)}
             color="processing"
             style={{ fontSize: "1rem", padding: "0.5rem" }}
+            key={selectSkill}
           >
             {selectSkill}
           </Tag>
@@ -85,24 +87,25 @@ export default function PostJobs({ setIsModalOpen }) {
   };
 
   const onSubmitHandler = (values) => {
-    console.log("values", values.dateString);
-    console.log(typeof (values.dateString));
+    console.log("values skilss", values.skills);
+    console.log("values", values);
+    console.log("values.dateString", values.date.format("YYYY-MM-DD"));
     const newJobDetails = {
+      guid: Math.random(),
       company: values.company,
       email: values.email,
       name_of_the_recruiter: name,
       job_requirement: values.job_requirement,
       job_description: values.job_description,
-      skills: [...values.skills],
-      date: values.dateString,
-      applicants: 0,
-
+      skills: [...selectedSkills],
+      date: values.date.format("YYYY-MM-DD"),
+      applicants: Math.floor(Math.random() * 10 + 1),
     };
     setJobDetails([...jobDetails, newJobDetails]);
 
     setIsModalOpen(false);
+    form.resetFields();
   };
-  console.log("jobDetails", jobDetails);
 
   // form css
   const formItemLayout = {
@@ -169,10 +172,10 @@ export default function PostJobs({ setIsModalOpen }) {
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Tags" name="skills">
+      <Form.Item label="Skills" name="skills">
         {selectedSkillsSets()}
         <Input
-          placeholder="Add Tags"
+          placeholder="Add Skills"
           type="text"
           value={takeInput}
           onChange={onChangeHandler}
@@ -201,7 +204,7 @@ export default function PostJobs({ setIsModalOpen }) {
           },
         ]}
       >
-        <DatePicker />
+        <DatePicker onChange={(date, dateString) => console.log(dateString)} />
       </Form.Item>
       <Form.Item
         label="Job Description"

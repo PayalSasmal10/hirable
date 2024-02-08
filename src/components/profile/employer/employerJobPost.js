@@ -23,7 +23,7 @@ export default function EmployerJobPost() {
           <Card
             style={{ width: "90%", display: "flex", marginTop: "1rem" }}
             className="card-profile"
-            key={job.name}
+            key={job.guid}
           >
             <div>
               <div>
@@ -48,7 +48,7 @@ export default function EmployerJobPost() {
               </div>
               {job.skills.map((skill) => {
                 return (
-                  <Tag color="blue" style={{ marginTop: "1rem" }}>
+                  <Tag color="blue" style={{ marginTop: "1rem" }} key={skill}>
                     {skill}
                   </Tag>
                 );

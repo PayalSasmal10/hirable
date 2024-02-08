@@ -74,10 +74,6 @@ export default function JobDetailsPage() {
 
   };
 
-  // useEffect(() => {
-  //   onFilteredDataChangeHandler(searchFieldData);
-  // }, [searchFieldData, onFilteredDataChangeHandler]);
-
   return (
     <>
       <Header
