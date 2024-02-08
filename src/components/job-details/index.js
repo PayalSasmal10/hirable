@@ -23,47 +23,45 @@ export default function JobDetails() {
       <div className="card-layout">
         <h1>Recommended jobs for you</h1>
         {/* <Pagination > */}
-        {isLoading ? (
-          Array.from({length: itemsPerPage}).map((_, index) => (
-            <div className="card" key={index}>
-              <Skeleton active paragraph={{ row : 4}}/>
-            </div>
-          ))
-        ) : (
-          currentPageData.map((jobdetail) => {
-            return (
-              <div className="card" key={jobdetail.guid}>
-                <div className="content">
-                  <div>
-                    <h3>{jobdetail.role}</h3>
-                    <p>{jobdetail.company}</p>
-                  </div>
-                  <div>
-                    <span>{jobdetail.experience}</span>
-                    <PiDotOutlineFill />
-                    <span>{jobdetail.salary}</span>
-                    <PiDotOutlineFill />
-                    <span>{jobdetail.region}</span>
-                  </div>
-                  <div>
-                    <span>hi ther.........</span>
-                  </div>
-                  <div>
-                    <span>
-                      {jobdetail.skills.map((skill) => (
-                        <span key={skill}>
-                          {skill}
-                          <LuDot />
-                        </span>
-                      ))}
-                    </span>
-                  </div>
-                </div>
-                <Button type="primary">Easy Apply</Button>
+        {isLoading
+          ? Array.from({ length: itemsPerPage }).map((_, index) => (
+              <div className="card" key={index}>
+                <Skeleton active paragraph={{ row: 4 }} />
               </div>
-            );
-          })
-        )}
+            ))
+          : currentPageData.map((jobdetail) => {
+              return (
+                <div className="card" key={jobdetail.guid}>
+                  <div className="content">
+                    <div>
+                      <h3>{jobdetail.role}</h3>
+                      <p>{jobdetail.company}</p>
+                    </div>
+                    <div>
+                      <span>{jobdetail.experience}</span>
+                      <PiDotOutlineFill />
+                      <span>{jobdetail.salary}</span>
+                      <PiDotOutlineFill />
+                      <span>{jobdetail.region}</span>
+                    </div>
+                    <div>
+                      <span>hi ther.........</span>
+                    </div>
+                    <div>
+                      <span>
+                        {jobdetail.skills.map((skill) => (
+                          <span key={skill}>
+                            {skill}
+                            <LuDot />
+                          </span>
+                        ))}
+                      </span>
+                    </div>
+                  </div>
+                  <Button type="primary">Easy Apply</Button>
+                </div>
+              );
+            })}
         <Pagination
           defaultCurrent={1}
           current={currentPage}
