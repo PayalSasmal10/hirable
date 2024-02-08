@@ -1,13 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsSearch } from "react-icons/bs";
-import "./index.css";
-import { HirableContext } from "../../store/hirableContext";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { Modal, Popover, Space } from "antd";
+import { Popover, Space } from "antd";
 import Search from "antd/es/input/Search";
+import "./index.css";
 
-export default function Header({ name, logout, onClickHandler, role, onSearchHandler }) {
+export default function Header({
+  name,
+  logout,
+  onClickHandler,
+  role,
+  onSearchHandler,
+}) {
   const [openPopOver, setOpenPopOver] = useState(false);
   const content = (
     <div>
@@ -31,7 +35,6 @@ export default function Header({ name, logout, onClickHandler, role, onSearchHan
     setOpenPopOver(newOpen);
   };
 
-
   return (
     <div className="header">
       <Link to="/">HIRABLE</Link>
@@ -40,13 +43,11 @@ export default function Header({ name, logout, onClickHandler, role, onSearchHan
           placeholder="Search jobs here"
           onChange={onSearchHandler}
           onSearch={onClickHandler}
-          enterButton
+          enterButton="Search"
+          size="large"
           allowClear
         />
       </Space>
-      {/* <button type="submit" onClick={onClickHandler}>
-        <BsSearch size="1.5rem" />
-      </button> */}
       <Popover
         title={name}
         content={content}

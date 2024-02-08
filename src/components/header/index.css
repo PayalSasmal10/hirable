@@ -1,35 +1,32 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(116, 110, 110, 0.2);
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 999;
-    background-color: #fff;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(116, 110, 110, 0.2);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
 }
 
-.header a{
-    text-decoration: none;
-    color: black;
-    font-size: 1.5em;
+.header a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
 }
 
-.header input[type=text]{
-    float: right;
-    padding: 5px;
-    width: 600px;
-    height: 20px;
-    /* margin-right: 10px; */
-} 
+.header input[type="text"] {
+  float: right;
+  padding: 5px;
+  width: 600px;
+  height: 41px;
+}
 .header button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
 
-.profile{
-    cursor: pointer;
+.profile {
+  cursor: pointer;
 }
