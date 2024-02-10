@@ -36,13 +36,13 @@ export default function JobDetailsPage() {
   console.log(filteredData);
 
   const onFilteredDataChangeHandler = (valueToBeSearched) => {
+    console.log("valueToBeSearched", valueToBeSearched.split(" "));
+
     if (valueToBeSearched !== "" && selectedSalaries.length === 0) {
       console.log("First if");
       const data = jobDetails.filter((jobdetail) => {
-        return jobdetail.skills
-          .join(", ")
-          .toLowerCase()
-          .includes(valueToBeSearched.toLowerCase());
+        const words = valueToBeSearched.toLowerCase().split(" ");
+        return words.every((word) => jobdetail.skills.join(", ").toLowerCase().includes(word));
       });
       setFilteredData(data);
       updatedSearchData(valueToBeSearched);

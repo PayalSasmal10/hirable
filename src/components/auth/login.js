@@ -2,7 +2,7 @@ import freelancerloginData from "../../data/freelancerLoginMock.json";
 import employerloginData from "../../data/employerLoginMockData.json";
 import { Button, Card, Flex, Form, Image, Input, Tabs } from "antd";
 import loginImage from "../../assets/loginImage.svg";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { HirableContext } from "../../store/hirableContext";
 import { withLogin } from "./loginHOC";
 import { useNavigate } from "react-router-dom";
@@ -13,16 +13,18 @@ export const LoginPage = () => {
   const authContext = useContext(HirableContext);
   const navigate = useNavigate();
   const isLoggedIn = authContext.isLoggedIn;
+  const [error, setError] = useState("");
 
   const onSubmitHandler = (values, item) => {
     const loginHandler = withLogin(
       item === "Freelancer" ? freelancerloginData : employerloginData,
       item
     );
-    loginHandler(values, navigate, authContext, isLoggedIn);
+    loginHandler(values, navigate, authContext, isLoggedIn, setError);
     form.resetFields();
   };
 
+  console.log("error", error);
   const layout = {
     labelCol: {
       span: 8,
@@ -56,7 +58,6 @@ export const LoginPage = () => {
           rules={[
             {
               required: true,
-              message: "Please input your email!",
               type: "email",
             },
           ]}
@@ -101,6 +102,7 @@ export const LoginPage = () => {
             "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
         }}
       >
+        {error && error.length > 0 && <p style={{ color: "red" }}>{error}</p>}
         <Tabs
           defaultActiveKey="1"
           size="small"
